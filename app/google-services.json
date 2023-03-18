@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "568138095199",
+    "project_id": "ecommerce-479bf",
+    "storage_bucket": "ecommerce-479bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568138095199:android:a6174017df777e384dd9ea",
+        "android_client_info": {
+          "package_name": "com.maruchan.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568138095199-jmimtm067ijgdhnraqmjrhuo2stksjcs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTDWLX-1z2CL6MRAntufT1N1A2hs5keiQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568138095199-jmimtm067ijgdhnraqmjrhuo2stksjcs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
