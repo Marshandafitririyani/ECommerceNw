@@ -50,4 +50,24 @@ interface ApiService {
 
     @POST("api/auth/logout")
     suspend fun logout(): String
+
+    @FormUrlEncoded
+    @POST("api/chart")
+    suspend fun addCart(
+        @Field("size_id") sizeId: Int?,
+        @Field("qty") qty: Int?
+    ): String
+
+    @GET("api/chart")
+    suspend fun showChart(): String
+
+    @POST("api/chart/edit/{id}")
+    suspend fun editCart(
+        @Path("qty") qty: Int?
+    ): String
+
+    @POST("api/chart/delete/{id}")
+    suspend fun deletCart(): String
+
+
 }

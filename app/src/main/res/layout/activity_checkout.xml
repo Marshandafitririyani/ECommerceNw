@@ -22,7 +22,7 @@
                 android:id="@+id/iv_back_checkout"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:foreground="?selectableItemBackground"
                 android:src="@drawable/ic_arrow_back"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -146,11 +146,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_265sdp"
             android:text="@string/city"
+            android:gravity="center"
             android:textColor="@color/blue_50"
             android:textSize="@dimen/_15ssp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.104"
+            app:layout_constraintHorizontal_bias="0.09"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

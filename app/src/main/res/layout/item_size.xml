@@ -20,6 +20,7 @@
         app:cardCornerRadius="@dimen/_10sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/background_color_size"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/custom_layout_frame_abu">

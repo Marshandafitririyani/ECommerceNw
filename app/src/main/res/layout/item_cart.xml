@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -9,7 +10,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/_270sdp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5sdp"
         android:background="@color/blue_100"
@@ -37,12 +38,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    imageUrl='@{data.productt.image}'
                     android:id="@+id/img_list"
-                    imageUrl='@{data.image}'
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
                     android:layout_margin="@dimen/_8sdp"
-                    android:background="@drawable/img_shoe"
+                    android:src="@drawable/img_shoe"
                     android:contentDescription="@string/todo19" />
 
                 <LinearLayout
@@ -55,9 +56,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:hint="@string/nike_jordan_retro_blue"
+                        tools:text="@string/nike_jordan_retro_blue"
                         android:maxLines="2"
-                        android:text='@{data.name}'
+                        android:text='@{data.productt.description}'
                         android:textColor="@color/blue_50"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
@@ -69,7 +70,6 @@
                         android:ellipsize="end"
                         android:hint="@string/rp_2000000000"
                         android:maxLines="1"
-                        android:text='@{data.description}'
                         android:textSize="@dimen/_12sdp" />
                 </LinearLayout>
 
@@ -83,9 +83,12 @@
                         android:layout_height="@dimen/_25sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:contentDescription="@string/todo18"
-                        android:src="@drawable/custom_button_sircle_full" />
+                        android:src="@drawable/img_pluss_nw"
+
+                         />
 
                     <TextView
+                        android:id="@+id/qty"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -99,7 +102,8 @@
                         android:layout_height="@dimen/_25sdp"
                         android:layout_marginTop="@dimen/_1sdp"
                         android:contentDescription="@string/todo17"
-                        android:src="@drawable/custom_button_sircle_full_whit" />
+                        android:src="@drawable/img_minus"
+                        />
 
                 </LinearLayout>
             </LinearLayout>
