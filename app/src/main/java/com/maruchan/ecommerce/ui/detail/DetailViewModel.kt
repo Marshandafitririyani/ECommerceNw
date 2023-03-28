@@ -72,7 +72,6 @@ class DetailViewModel @Inject constructor(
             }
         )
     }
-
 }
 
 

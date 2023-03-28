@@ -3,11 +3,13 @@ package com.maruchan.ecommerce.ui.cart
 import androidx.lifecycle.viewModelScope
 import com.crocodic.core.api.ApiCode
 import com.crocodic.core.api.ApiObserver
+import com.crocodic.core.api.ApiResponse
 import com.crocodic.core.extension.toList
 import com.crocodic.core.extension.toObject
 import com.google.gson.Gson
 import com.maruchan.ecommerce.api.ApiService
 import com.maruchan.ecommerce.base.viewmodel.BaseViewModel
+import com.maruchan.ecommerce.data.cart.Cart
 import com.maruchan.ecommerce.data.session.Session
 import com.maruchan.ecommerce.data.user.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +27,7 @@ class CartViewModel @Inject constructor(
     private val session: Session
 
 ) : BaseViewModel() {
-    private val _responseSaveCart = MutableSharedFlow<List<Product>>()
+    private val _responseSaveCart = MutableSharedFlow<List<Cart>>()
     val responseSave = _responseSaveCart.asSharedFlow()
     /*private val _responseSaveCartProduct = MutableSharedFlow<List<Product.Productt>>()
     val responseSaveProduct = _responseSaveCartProduct.asSharedFlow()*/
@@ -37,7 +39,7 @@ class CartViewModel @Inject constructor(
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
-                    val data = response.getJSONArray(ApiCode.DATA).toList<Product>(gson)
+                    val data = response.getJSONArray(ApiCode.DATA).toList<Cart>(gson)
                     _responseSaveCart.emit(data)
                     Timber.d("cek api ${data.size}")
                 }
@@ -60,18 +62,21 @@ class CartViewModel @Inject constructor(
    }
 */
 
-   /* fun editCart(qty: Int) = viewModelScope.launch {
+    fun editCart(id: Int?,qty: Int?) = viewModelScope.launch {
         ApiObserver(
-            { apiService.editCart(qty = 1 )},
+            { apiService.editCart(id,qty)},
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
-                    val data = response.getJSONArray(ApiCode.DATA).toList<Product>(gson)
-                    _responseSaveCart.emit(data)
-                    Timber.d("cek api ${data.size}")
+                    /*val data = response.getJSONObject(ApiCode.DATA).toObject<Cart>(gson)
+                    _responseSaveCart.emit(data)*/
+                   /* Timber.d("cek api ${data.size}")*/
+                }
+
+                override suspend fun onError(response: ApiResponse) {
+                    super.onError(response)
                 }
             }
         )
     }
-*/
 }

@@ -53,7 +53,6 @@ class CheckoutActivity :
                                 loadingDialog.dismiss()
                                 openActivity<HomeActivity>()
                                 finish()
-
                             }
                             ApiStatus.ERROR -> {
                                 disconnect(it)

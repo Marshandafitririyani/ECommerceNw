@@ -61,9 +61,11 @@ interface ApiService {
     @GET("api/chart")
     suspend fun showChart(): String
 
+    @FormUrlEncoded
     @POST("api/chart/edit/{id}")
     suspend fun editCart(
-        @Path("qty") qty: Int?
+        @Path("id") id: Int?,
+        @Field("qty") qty: Int?
     ): String
 
     @POST("api/chart/delete/{id}")

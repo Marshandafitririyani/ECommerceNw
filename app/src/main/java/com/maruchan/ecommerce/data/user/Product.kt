@@ -57,6 +57,9 @@ data class Product(
         @SerializedName("image")
         val image: String?,
         @Expose
+        @SerializedName("totalCost")
+        val totalCost: Int?,
+        @Expose
         @SerializedName("name")
         val nameProduct: String?,
         @Expose
