@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="com.maruchan.ecommerce.data.cart.Cart" />
@@ -38,17 +39,17 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    imageUrl='@{data.variant.image}'
                     android:id="@+id/img_list"
+                    imageUrl='@{data.variant.image}'
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
                     android:layout_margin="@dimen/_8sdp"
-                    android:src="@drawable/img_shoe"
-                    android:contentDescription="@string/todo19" />
+                    android:contentDescription="@string/todo19"
+                    android:src="@drawable/img_shoe" />
 
                 <LinearLayout
                     android:layout_width="@dimen/_120sdp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_10sdp"
                     android:orientation="vertical">
 
@@ -56,12 +57,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        tools:text="@string/nike_jordan_retro_blue"
                         android:maxLines="2"
                         android:text='@{data.product.description}'
                         android:textColor="@color/blue_50"
                         android:textSize="@dimen/_15sdp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="@string/nike_jordan_retro_blue" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -70,9 +71,18 @@
                         android:ellipsize="end"
                         android:hint="@string/rp_2000000000"
                         android:maxLines="1"
-                        android:textSize="@dimen/_12sdp"
                         android:text='@{data.totalCost}'
-                        />
+                        android:textSize="@dimen/_12sdp" />
+
+                    <ImageView
+                        android:id="@+id/img_delet"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?selectableItemBackground"
+                        android:src="@drawable/ic_delete"
+                        android:contentDescription="@string/todo30" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -83,14 +93,12 @@
                     <ImageView
                         android:id="@+id/btn_pluss"
                         android:layout_width="@dimen/_25sdp"
-                        android:focusable="true"
-                        android:clickable="true"
                         android:layout_height="@dimen/_25sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        android:clickable="true"
                         android:contentDescription="@string/todo18"
-                        android:src="@drawable/img_pluss_nw"
-
-                         />
+                        android:focusable="true"
+                        android:src="@drawable/img_pluss_nw" />
 
                     <TextView
                         android:id="@+id/btn_qty"
@@ -101,17 +109,15 @@
                         android:text="@string/_1"
                         android:textSize="@dimen/_15ssp" />
 
-
                     <ImageView
                         android:id="@+id/btn_minus"
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:layout_marginTop="@dimen/_1sdp"
-                        android:contentDescription="@string/todo17"
-                        android:src="@drawable/img_minus"
-                        android:focusable="true"
                         android:clickable="true"
-                        />
+                        android:contentDescription="@string/todo17"
+                        android:focusable="true"
+                        android:src="@drawable/img_minus" />
 
                 </LinearLayout>
             </LinearLayout>

@@ -29,11 +29,11 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/checkout")
     suspend fun checkout(
-        @Field("address") address: String?,
+        @Field("alamat") address: String?,
         @Field("provinsi") provinsi: String?,
         @Field("kota") kota: String?,
         @Field("kecamatan") kecamatan: String?,
-        @Field("note") note: String?,
+        @Field("notes") note: String?,
     ): String
 
     @GET("api/product")
@@ -69,7 +69,9 @@ interface ApiService {
     ): String
 
     @POST("api/chart/delete/{id}")
-    suspend fun deletCart(): String
+    suspend fun deleteCart(
+        @Path("id") id: Int
+    ): String
 
 
 }

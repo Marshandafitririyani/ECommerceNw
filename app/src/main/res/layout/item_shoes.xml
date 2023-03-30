@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.maruchan.ecommerce.data.user.Product" />
+            type="com.maruchan.ecommerce.data.product.Product" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -97,5 +97,4 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </layout>

@@ -35,7 +35,7 @@
     <string name="rp_3_721_554">Rp. 3.721.554</string>
     <string name="colors_available">COLORS AVAILABLE</string>
     <string name="select_your_size">SELECT YOUR SIZE</string>
-    <string name="checkout4">Checkout</string>
+    <string name="checkout4">Add To Cart</string>
     <string name="todo4">TODO</string>
     <string name="todo3">TODO</string>
     <string name="todo5">TODO</string>
@@ -74,4 +74,18 @@
     <string name="todo21">TODO</string>
     <string name="todo22">TODO</string>
     <string name="_11">1</string>
+    <string name="save">Save</string>
+    <string name="todo23">TODO</string>
+    <string name="telephone_number2">Telephone Number</string>
+    <string name="your_name">Your Name</string>
+    <string name="share_a_little_bit_of_yourself">Share a Little Bit of YourSelf</string>
+    <string name="todo24">TODO</string>
+    <string name="todo25">TODO</string>
+    <string name="todo26">TODO</string>
+    <string name="todo27">TODO</string>
+    <string name="add_phone">Add Phone</string>
+    <string name="add_password">Add Password</string>
+    <string name="todo28">TODO</string>
+    <string name="todo29">TODO</string>
+    <string name="todo30">TODO</string>
 </resources>

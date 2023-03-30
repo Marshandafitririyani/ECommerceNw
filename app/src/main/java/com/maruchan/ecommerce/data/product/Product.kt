@@ -1,4 +1,4 @@
-package com.maruchan.ecommerce.data.user
+package com.maruchan.ecommerce.data.product
 
 
 import android.os.Parcelable
@@ -33,8 +33,9 @@ data class Product(
    /* @SerializedName("cart")
     val cart: List<Cart?>?*/
     @SerializedName("product")
-    val productt:Productt?
+    val productt: Productt?
 ) : Parcelable {
+
 
     @Parcelize
     data class Productt(

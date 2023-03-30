@@ -9,7 +9,7 @@ import com.google.gson.Gson
 import com.maruchan.ecommerce.api.ApiService
 import com.maruchan.ecommerce.base.viewmodel.BaseViewModel
 import com.maruchan.ecommerce.data.session.Session
-import com.maruchan.ecommerce.data.user.Product
+import com.maruchan.ecommerce.data.product.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -35,15 +35,14 @@ class CheckoutViewModel @Inject constructor(
         kecamatan: String?,
         note: String?
     ) = viewModelScope.launch {
-        _apiResponse.send(ApiResponse().responseLoading())
         ApiObserver(
             { apiService.checkout(address, provinsi, kota, kecamatan, note) },
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
-                    val status = response.getInt(ApiCode.STATUS)
-                    val data = response.getJSONArray(ApiCode.DATA).toList<Product>(gson)
-                    _responseSave.emit(data)
+                    /*val status = response.getInt(ApiCode.STATUS)*/
+        /*            val data = response.getJSONArray(ApiCode.DATA).toList<Product>(gson)
+                    _responseSave.emit(data)*/
                     _apiResponse.send(ApiResponse().responseSuccess("Checkout Succes"))
                 }
                 override suspend fun onError(response: ApiResponse) {

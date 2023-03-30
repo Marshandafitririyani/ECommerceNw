@@ -31,7 +31,7 @@ class LoginViewModel @Inject constructor(
                     val status = response.getInt(ApiCode.STATUS)
                     val newToken = response.getString("token")
                     session.setValue(Const.TOKEN.API_TOKEN, newToken)
-                    _apiResponse.send(ApiResponse().responseSuccess("Login Succes"))
+                    _apiResponse.send(ApiResponse().responseSuccess())
                 }
                 override suspend fun onError(response: ApiResponse) {
                     super.onError(response)

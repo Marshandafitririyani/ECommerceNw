@@ -25,6 +25,7 @@
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="28dp"
+            android:contentDescription="@string/todo27"
             android:src="@drawable/img_shoe"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.166"
@@ -35,6 +36,7 @@
             android:layout_width="@dimen/_100sdp"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
+            android:contentDescription="@string/todo26"
             android:src="@drawable/img_the_store"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.11"
@@ -43,13 +45,13 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_camera_edit_profil"
+            imageUrl='@{photo}'
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_130sdp"
             android:layout_gravity="center"
             android:layout_marginTop="152dp"
-            imageUrl='@{photo}'
             android:background="@drawable/custom_button_sircle"
-            android:src="@drawable/img_coffee"
+            android:src="@drawable/img_foto_edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -71,6 +73,7 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:background="@drawable/custom_layout_"
+            android:contentDescription="@string/todo25"
             android:foreground="?selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +85,7 @@
         <ImageView
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/todo24"
             android:src="@drawable/ic_camera"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -93,52 +97,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="340dp"
-            android:text="Share a Little Bit of YourSelf"
+            android:layout_marginTop="345dp"
+            android:text="@string/share_a_little_bit_of_yourself"
             android:textColor="@color/blue_75"
             android:textSize="@dimen/_15ssp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- <FrameLayout
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="parent" >
-
-
-             <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="412dp"
-                 android:text="Name"
-                 android:textColor="@color/black"
-                 android:textSize="@dimen/_12ssp"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toTopOf="parent" />-->
-<!--
-        <EditText
-            android:id="@+id/et_name_edit_profil"
-            android:layout_width="@dimen/_280sdp"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="412dp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:background="@drawable/custom_layout_frame"
-            android:drawableStart="@drawable/ic_person"
-            android:drawablePadding="@dimen/_8sdp"
-            android:hint="Marshanda"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.659"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--    </FrameLayout>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/_300sdp"
@@ -151,7 +117,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-
                 android:id="@+id/et_name_edit_profil"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
@@ -160,14 +125,13 @@
                 android:background="@drawable/custom_layout_frame"
                 android:drawableStart="@drawable/ic_person"
                 android:drawablePadding="@dimen/_9sdp"
-                android:hint="Your Name"
+                android:hint="@string/your_name"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.659"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -181,7 +145,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-
                 android:id="@+id/et_phone_edit_profile"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
@@ -190,7 +153,7 @@
                 android:background="@drawable/custom_layout_frame"
                 android:drawableStart="@drawable/ic_phone_android"
                 android:drawablePadding="@dimen/_9sdp"
-                android:hint="Telephone Number"
+                android:hint="@string/telephone_number2"
                 android:inputType="phone"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -218,6 +181,7 @@
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_110sdp"
+                android:contentDescription="@string/todo23"
                 android:src="@drawable/ic_bookmark" />
 
             <TextView
@@ -226,13 +190,11 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_marginEnd="@dimen/_80sdp"
-                android:text="Save"
-                android:textStyle="bold"
+                android:text="@string/save"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_20sdp" />
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold" />
 
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

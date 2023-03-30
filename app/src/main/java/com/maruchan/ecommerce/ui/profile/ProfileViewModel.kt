@@ -28,19 +28,14 @@ class ProfileViewModel @Inject constructor(
     val user = _user.receiveAsFlow()
     val getUser = session.getUser()
 
-    fun getProfile() = viewModelScope.launch {
-        _apiResponse.send(ApiResponse().responseLoading())
-        ApiObserver(
-            { apiService.getProfile() },
-            false,
-            object : ApiObserver.ResponseListener {
-                override suspend fun onSuccess(response: JSONObject) {
-                    val status = response.getInt(ApiCode.STATUS)
-                    val data = response.getJSONObject(ApiCode.DATA).toObject<User>(gson)
-                    session.saveUser(data)
-                    _apiResponse.send(ApiResponse().responseSuccess())
-                }
 
+    fun logout() = viewModelScope.launch {
+        ApiObserver({ apiService.logout() },
+            false, object : ApiObserver.ResponseListener {
+                override suspend fun onSuccess(response: JSONObject) {
+                    session.clearAll()
+                    _apiResponse.send(ApiResponse().responseSuccess("Logout Success"))
+                }
                 override suspend fun onError(response: ApiResponse) {
                     super.onError(response)
                     _apiResponse.send(ApiResponse().responseError())
@@ -48,14 +43,27 @@ class ProfileViewModel @Inject constructor(
             }
         )
     }
-
-    fun logout() = viewModelScope.launch {
-        ApiObserver({ apiService.logout() },
-            false, object : ApiObserver.ResponseListener {
-                override suspend fun onSuccess(response: JSONObject) {
-                    session.clearAll()
-                }
-            }
-        )
-    }
 }
+
+/*
+  fun getProfile() = viewModelScope.launch {
+      _apiResponse.send(ApiResponse().responseLoading())
+      ApiObserver(
+          { apiService.getProfile() },
+          false,
+          object : ApiObserver.ResponseListener {
+              override suspend fun onSuccess(response: JSONObject) {
+                  val status = response.getInt(ApiCode.STATUS)
+                  val data = response.getJSONObject(ApiCode.DATA).toObject<User>(gson)
+                  session.saveUser(data)
+                  _apiResponse.send(ApiResponse().responseSuccess())
+              }
+
+              override suspend fun onError(response: ApiResponse) {
+                  super.onError(response)
+                  _apiResponse.send(ApiResponse().responseError())
+              }
+          }
+      )
+  }
+*/

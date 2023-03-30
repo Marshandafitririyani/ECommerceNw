@@ -48,11 +48,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
             android:text="@string/enter_your_number_phone_and_password"
             android:textColor="@color/blue_100"
             android:textSize="@dimen/_15ssp"
             android:textStyle="bold"
-            android:layout_marginStart="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +66,7 @@
             android:textSize="@dimen/_15ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.124"
+            app:layout_constraintHorizontal_bias="0.12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.534" />
@@ -79,7 +79,7 @@
             android:background="@drawable/custom_layout_frame"
             android:drawableStart="@drawable/ic_phone"
             android:drawablePadding="@dimen/_8sdp"
-            android:hint="@string/_62_992_127"
+            android:hint="@string/add_phone"
             android:inputType="textEmailAddress"
             android:padding="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -97,7 +97,7 @@
             android:textSize="@dimen/_15ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.098"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.676" />
@@ -119,10 +119,11 @@
                 android:id="@+id/et_password_login"
                 android:layout_width="@dimen/_280sdp"
                 android:layout_height="@dimen/_45sdp"
+                android:autofillHints="password"
                 android:background="@drawable/custom_layout_frame"
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="@dimen/_8sdp"
-                android:hint="@string/password2"
+                android:hint="@string/add_password"
                 android:inputType="textPassword"
                 android:padding="@dimen/_10sdp"
                 android:singleLine="true"
@@ -131,8 +132,7 @@
                 app:layout_constraintHorizontal_bias="0.68"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.748"
-                android:autofillHints="password" />
+                app:layout_constraintVertical_bias="0.748" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

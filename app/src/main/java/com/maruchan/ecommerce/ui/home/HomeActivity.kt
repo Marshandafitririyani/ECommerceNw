@@ -8,12 +8,13 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.base.adapter.ReactiveListAdapter
 import com.crocodic.core.extension.openActivity
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
 import com.maruchan.ecommerce.data.constant.Const
-import com.maruchan.ecommerce.data.user.Product
+import com.maruchan.ecommerce.data.product.Product
 import com.maruchan.ecommerce.databinding.ActivityHomeBinding
 import com.maruchan.ecommerce.databinding.ItemShoesBinding
 import com.maruchan.ecommerce.ui.cart.CartActivity
@@ -42,6 +43,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
 
         observe()
         adapter()
+        getProfile()
 
         val user = session.getUser()
         if (user != null) {
@@ -88,6 +90,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                launch {
+                    viewModel.apiResponse.collect {
+                        when (it.status) {
+                            ApiStatus.SUCCESS -> {
+                                loadingDialog.dismiss()
+                                binding.home = session.getUser()
+                            }
+                            else -> loadingDialog.setResponse(it.message ?: return@collect)
+                        }
+                    }
+                }
                 launch {
                     getAll()
                     viewModel.responseSave.collect { product ->
@@ -110,11 +124,16 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                         }
                     }
                 }
+
             }
         }
     }
 
     private fun getAll() {
         viewModel.getAllProduk()
+    }
+
+    private fun getProfile() {
+        viewModel.getProfile()
     }
 }

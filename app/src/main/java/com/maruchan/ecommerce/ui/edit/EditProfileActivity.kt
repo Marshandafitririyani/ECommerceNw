@@ -22,6 +22,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.extension.*
 import com.crocodic.core.helper.DateTimeHelper
+import com.crocodic.core.helper.ImagePreviewHelper
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
 import com.maruchan.ecommerce.databinding.ActivityEditProfileBinding
@@ -110,8 +111,10 @@ class EditProfileActivity :
     private fun initClick() {
         binding.btnSaveEditProfil.setOnClickListener {
             validateForm()
-
         }
+       /* binding.ivImageEditProfil.setOnClickListener {
+            ImagePreviewHelper(this).show(binding.ivImageEditProfil, user?.image)
+        }*/
 
         binding.ivCameraEditProfil.setOnClickListener {
             if (checkPermissionGallery()) {

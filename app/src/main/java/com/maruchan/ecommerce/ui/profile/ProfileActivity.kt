@@ -8,6 +8,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.extension.openActivity
 import com.crocodic.core.extension.tos
+import com.crocodic.core.helper.ImagePreviewHelper
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
 import com.maruchan.ecommerce.databinding.ActivityProfileBinding
@@ -22,15 +23,20 @@ class ProfileActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getProfile()
-
+        val user = session.getUser()
+        if (user != null) {
+            binding.user = user
+        }
+        binding.ivImageProfile.setOnClickListener {
+            ImagePreviewHelper(this).show(binding.ivImageProfile, user?.image)
+        }
         binding.ivEditProfile.setOnClickListener {
             openActivity<EditProfileActivity>()
         }
 
         binding.ivLogout.setOnClickListener {
             viewModel.logout()
-            openActivity<SplashActivity>()
+//            openActivity<SplashActivity>()
         }
 
         binding.ivEditProfile.setOnClickListener {
@@ -47,9 +53,19 @@ class ProfileActivity :
                 launch {
                     viewModel.apiResponse.collect {
                         when (it.status) {
+                            ApiStatus.LOADING -> {
+                                loadingDialog.show()
+                            }
                             ApiStatus.SUCCESS -> {
                                 loadingDialog.dismiss()
-                                binding.user = session.getUser()
+                                openActivity<SplashActivity>{
+                                    finishAffinity()
+
+                                }
+//                                binding.user = session.getUser()
+                            }
+                            ApiStatus.ERROR -> {
+                                loadingDialog.setResponse(it.message ?: return@collect)
                             }
                             else -> loadingDialog.setResponse(it.message ?: return@collect)
                         }
@@ -60,7 +76,9 @@ class ProfileActivity :
         }
     }
 
-    private fun getProfile() {
-        viewModel.getProfile()
-    }
+
+
+//    private fun getProfile() {
+//        viewModel.getProfile()
+//    }
 }

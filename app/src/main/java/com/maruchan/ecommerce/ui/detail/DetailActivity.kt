@@ -12,12 +12,12 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
 import com.maruchan.ecommerce.data.constant.Const
-import com.maruchan.ecommerce.data.user.Product
-import com.maruchan.ecommerce.data.user.Product.Variant
+import com.maruchan.ecommerce.data.product.Product
+import com.maruchan.ecommerce.data.product.Product.Variant
 import com.maruchan.ecommerce.databinding.ActivityDetailBinding
 import com.maruchan.ecommerce.databinding.ItemColorShoesBinding
 import com.maruchan.ecommerce.databinding.ItemSizeBinding
-import com.maruchan.ecommerce.imageSlider.ImageSlider
+import com.maruchan.ecommerce.helper.imageSlider.ImageSlider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -123,6 +123,7 @@ class DetailActivity :
             addCart()
         }
 
+
     }
 
     private fun adapter() {
@@ -137,7 +138,7 @@ class DetailActivity :
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.responseAPI.collect {
-                        when(it.status) {
+                        when (it.status) {
                             ApiStatus.LOADING -> {
                                 loadingDialog.show("Loading")
                             }
@@ -180,8 +181,8 @@ class DetailActivity :
         product?.id?.let { viewModel.getProductById(it) }
     }
 
-    private fun addCart(){
-        selectSize?.id?.let{ viewModel.addCaert(sizeId = it, qty = 1)}
+    private fun addCart() {
+        selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
     }
 
     /*private fun addCart() {
@@ -218,4 +219,10 @@ class DetailActivity :
         binding.imageSliderDetail.setImageList(imageList, ScaleTypes.CENTER_CROP)
     }
 }
+
+/*
+private fun ImagePreviewHelper.show(imageSliderDetail: com.denzcoskun.imageslider.ImageSlider, image: String?) {
+    TODO("Not yet implemented")
+}
+*/
 

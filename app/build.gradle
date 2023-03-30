@@ -43,6 +43,9 @@ android {
 
 dependencies {
 
+    //swipRefres
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
     //Hilt
     implementation 'com.google.dagger:hilt-android:2.44.2'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'

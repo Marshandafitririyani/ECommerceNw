@@ -1,4 +1,4 @@
-package com.maruchan.ecommerce.imageSlider
+package com.maruchan.ecommerce.helper.imageSlider
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

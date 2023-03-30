@@ -1,7 +1,6 @@
 package com.maruchan.ecommerce.ui.detail
 
 import androidx.lifecycle.viewModelScope
-import com.crocodic.core.api.ApiCode
 import com.crocodic.core.api.ApiObserver
 import com.crocodic.core.api.ApiResponse
 import com.crocodic.core.extension.toList
@@ -10,17 +9,13 @@ import com.google.gson.Gson
 import com.maruchan.ecommerce.api.ApiService
 import com.maruchan.ecommerce.base.viewmodel.BaseViewModel
 import com.maruchan.ecommerce.data.session.Session
-import com.maruchan.ecommerce.data.user.Product
-import com.maruchan.ecommerce.imageSlider.ImageSlider
+import com.maruchan.ecommerce.data.product.Product
+import com.maruchan.ecommerce.helper.imageSlider.ImageSlider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import org.json.JSONObject
-import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,10 +26,10 @@ class DetailViewModel @Inject constructor(
 
     ) : BaseViewModel() {
     private val _responseSave = MutableSharedFlow<Product>()
-    private val _responseSaveImage = MutableSharedFlow<List<ImageSlider>>()
-    private val _responseAPI = MutableSharedFlow<ApiResponse>()
     val responseSave = _responseSave.asSharedFlow()
+    private val _responseSaveImage = MutableSharedFlow<List<ImageSlider>>()
     val responseSaveImage = _responseSaveImage.asSharedFlow()
+    private val _responseAPI = MutableSharedFlow<ApiResponse>()
     val responseAPI = _responseAPI.asSharedFlow()
 
 
@@ -54,16 +49,16 @@ class DetailViewModel @Inject constructor(
         )
     }
 
-    fun addCaert(sizeId: Int, qty: Int = 1) = viewModelScope.launch {
+    fun addCart(sizeId: Int, qty: Int = 1) = viewModelScope.launch {
         _responseAPI.emit(ApiResponse().responseLoading())
         ApiObserver(
             { apiService.addCart(sizeId,qty) },
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
-                    val status = response.getInt(ApiCode.STATUS)
-                    val data = response.getJSONObject(ApiCode.DATA).toObject<Product>(gson)
-                    _responseAPI.emit(ApiResponse().responseSuccess())
+//                    val status = response.getInt(ApiCode.STATUS)
+//                    val data = response.getJSONObject(ApiCode.DATA).toObject<Product>(gson)
+                    _responseAPI.emit(ApiResponse().responseSuccess("Add Cart Success"))
                 }
                 override suspend fun onError(response: ApiResponse) {
                     super.onError(response)
@@ -72,6 +67,7 @@ class DetailViewModel @Inject constructor(
             }
         )
     }
+
 }
 
 

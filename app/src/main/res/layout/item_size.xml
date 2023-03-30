@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.maruchan.ecommerce.data.user.Product.Size" />
+            type="com.maruchan.ecommerce.data.product.Product.Size" />
     </data>
 
     <androidx.cardview.widget.CardView
