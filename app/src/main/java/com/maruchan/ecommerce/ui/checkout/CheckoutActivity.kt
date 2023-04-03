@@ -30,17 +30,17 @@ class CheckoutActivity :
             ) {
                 return@setOnClickListener
             }
-            val address = binding.etAlamatCheckout.textOf()
+            val alamat = binding.etAlamatCheckout.textOf()
             val provinsi = binding.etProvinsiCheckout.textOf()
             val kota = binding.etKotaCheckout.textOf()
             val kecamatan = binding.etKecamatanCheckout.textOf()
-            val note = binding.etNoteCheckout.textOf()
+            val catatan = binding.etNoteCheckout.textOf()
 
-            viewModel.checkout(address, provinsi, kota, kecamatan, note)
+            viewModel.checkout(alamat, provinsi, kota, kecamatan, catatan)
         }
 
         binding.ivBackCheckout.setOnClickListener {
-           finish()
+            finish()
         }
 
         lifecycleScope.launch {

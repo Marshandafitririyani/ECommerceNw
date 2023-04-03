@@ -37,7 +37,7 @@ interface ApiService {
     ): String
 
     @GET("api/product")
-    suspend fun getAllProduk(
+    suspend fun getAllProduct(
     ): String
 
     @GET("api/profile")

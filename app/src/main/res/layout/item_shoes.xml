@@ -41,7 +41,7 @@
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_6sdp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="@dimen/_3sdp"
@@ -60,7 +60,7 @@
                 android:id="@+id/tv_price"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="144dp"
+                android:layout_marginBottom="@dimen/_120sdp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text='@{data.description}'
@@ -70,12 +70,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.615"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:hint="sepatuluar biasa" />
+                tools:hint="sepatu biasa"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_108sdp"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="@dimen/_93sdp"
                 android:src="@drawable/img_shoe"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

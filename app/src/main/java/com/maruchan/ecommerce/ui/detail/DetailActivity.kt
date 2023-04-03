@@ -37,7 +37,6 @@ class DetailActivity :
     private var listSize = ArrayList<Product.Size?>()
     private var selectSize: Product.Size? = null
 
-    //adapter color
     private val adapterColor by lazy {
         object : ReactiveListAdapter<ItemColorShoesBinding, Variant>(R.layout.item_color_shoes) {
             override fun onBindViewHolder(
@@ -45,13 +44,11 @@ class DetailActivity :
                 position: Int
             ) {
                 listColor[position]?.let { data ->
-                    //menampilkaan view
                     holder.binding.data = data
                     holder.binding.backgroundColorShoes.setBackgroundColor(
                         if (data.selected) applicationContext.getColor(R.color.abu)
                         else applicationContext.getColor(R.color.white)
                     )
-                    //menampilkan data
                     holder.itemView.setOnClickListener {
                         listColor.forEachIndexed { index, variant ->
                             variant?.selected = index == position
@@ -59,14 +56,11 @@ class DetailActivity :
                         notifyDataSetChanged()
                         selectColor = data
                         condititonForColor(data.id)
-                        Timber.d("CekListColors: $listColor")
-                        println("CekListColors: $listColor")
                     }
                 }
             }
         }.initItem()
     }
-    //adapter size
     private val adapterSize by lazy {
         object : ReactiveListAdapter<ItemSizeBinding, Product.Size>(R.layout.item_size) {
             override fun onBindViewHolder(
@@ -85,14 +79,10 @@ class DetailActivity :
                         }
                         notifyDataSetChanged()
                         selectSize = data
-                        Timber.d("CekListColors: $listSize")
-                        println("CekListColors: $listSize")
-                        Log.d("cek selected","cek selrcted : ${data.selected}")
                         if(data.selected) {
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.blue_75))
                         }else{
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.abu))
-                           /* binding.root.snacked("Tambahkan Produk ke Keranjang Terlebih dahulu")*/
 
                         }
                     }
@@ -105,7 +95,6 @@ class DetailActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //getParcelable
         product = intent.getParcelableExtra(Const.LIST.PRODUCK)
         binding.detail = product
 
@@ -117,7 +106,6 @@ class DetailActivity :
 
     }
 
-    //kondisi untuk warnanya(color)
     private fun condititonForColor(idVarian: Int?) {
         if (selectColor == null) {
             binding.rvSize.visibility = View.INVISIBLE
@@ -131,7 +119,6 @@ class DetailActivity :
         }
     }
 
-
     private fun initClick() {
         binding.ivBackCart.setOnClickListener {
             finish()
@@ -143,7 +130,6 @@ class DetailActivity :
 
     }
 
-    //adapter
     private fun adapter() {
         binding.rvColor.adapter = adapterColor
         binding.rvSize.visibility = View.INVISIBLE
@@ -151,7 +137,6 @@ class DetailActivity :
 
     }
 
-    //kondisi loading
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -171,7 +156,6 @@ class DetailActivity :
                         }
                     }
                 }
-                //untuk submit varian, color dan size
                 launch {
                     viewModel.responseSave.collect {
                         product = it
@@ -188,7 +172,6 @@ class DetailActivity :
                         }
                     }
                 }
-                //untuk memanggil image slidernya
                 launch {
                     viewModel.responseSaveImage.collect {
                         initSlider(it)
@@ -208,24 +191,12 @@ class DetailActivity :
         if (selectSize?.selected == true) {
             selectSize?.let {
                 selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
-
             }
         } else {
             binding.root.snacked("Pilih Variant dan Ukuran Terlebih dahulu")
            }
         }
 
-  /*  private fun addCart() {
-        selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
-
-//        if (selectSize?.selected){
-//            binding.root.snacked("tambah")
-//        }else{
-//            selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
-//        }
-    }*/
-
-    //image slider
     private fun initSlider(data: List<ImageSlider>) {
         val imageList = ArrayList<SlideModel>()
         data.forEach {

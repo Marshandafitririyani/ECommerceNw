@@ -31,9 +31,9 @@ class HomeViewModel @Inject constructor(
     val responseSave = _responseSave.asSharedFlow()
 
 
-    fun getAllProduk() = viewModelScope.launch {
+    fun getAllProduct() = viewModelScope.launch {
         ApiObserver(
-            { apiService.getAllProduk() },
+            { apiService.getAllProduct() },
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
@@ -44,6 +44,7 @@ class HomeViewModel @Inject constructor(
             }
         )
     }
+
     fun getProfile() = viewModelScope.launch {
         _apiResponse.send(ApiResponse().responseLoading())
         ApiObserver(

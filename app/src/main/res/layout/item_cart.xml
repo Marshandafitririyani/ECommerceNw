@@ -79,10 +79,10 @@
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:clickable="true"
+                        android:contentDescription="@string/todo30"
                         android:focusable="true"
                         android:foreground="?selectableItemBackground"
-                        android:src="@drawable/ic_delete"
-                        android:contentDescription="@string/todo30" />
+                        android:src="@drawable/ic_delete" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -1,10 +1,8 @@
 package com.maruchan.ecommerce.ui.checkout
 
 import androidx.lifecycle.viewModelScope
-import com.crocodic.core.api.ApiCode
 import com.crocodic.core.api.ApiObserver
 import com.crocodic.core.api.ApiResponse
-import com.crocodic.core.extension.toList
 import com.google.gson.Gson
 import com.maruchan.ecommerce.api.ApiService
 import com.maruchan.ecommerce.base.viewmodel.BaseViewModel
@@ -29,20 +27,17 @@ class CheckoutViewModel @Inject constructor(
     val responseSave = _responseSave.asSharedFlow()
 
     fun checkout(
-        address: String?,
+        alamat: String?,
         provinsi: String?,
         kota: String?,
         kecamatan: String?,
-        note: String?
+        catatan: String?
     ) = viewModelScope.launch {
         ApiObserver(
-            { apiService.checkout(address, provinsi, kota, kecamatan, note) },
+            { apiService.checkout(alamat, provinsi, kota, kecamatan, catatan) },
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
-                    /*val status = response.getInt(ApiCode.STATUS)*/
-                    /*            val data = response.getJSONArray(ApiCode.DATA).toList<Product>(gson)
-                                _responseSave.emit(data)*/
                     _apiResponse.send(ApiResponse().responseSuccess("Checkout Succes"))
                 }
 

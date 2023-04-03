@@ -25,15 +25,10 @@ class DetailViewModel @Inject constructor(
     private val gson: Gson,
 
     ) : BaseViewModel() {
-    //product
     private val _responseSave = MutableSharedFlow<Product>()
     val responseSave = _responseSave.asSharedFlow()
-
-    //image slider
     private val _responseSaveImage = MutableSharedFlow<List<ImageSlider>>()
     val responseSaveImage = _responseSaveImage.asSharedFlow()
-
-    //API response
     private val _responseAPI = MutableSharedFlow<ApiResponse>()
     val responseAPI = _responseAPI.asSharedFlow()
 
@@ -61,8 +56,6 @@ class DetailViewModel @Inject constructor(
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
-//                    val status = response.getInt(ApiCode.STATUS)
-//                    val data = response.getJSONObject(ApiCode.DATA).toObject<Product>(gson)
                     _responseAPI.emit(ApiResponse().responseSuccess("Add Cart Success"))
                 }
                 override suspend fun onError(response: ApiResponse) {

@@ -29,7 +29,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     private val product = ArrayList<Product?>()
     private val procuctAll = ArrayList<Product?>()
 
-    //adapter product
+
     private val adapter by lazy {
         ReactiveListAdapter<ItemShoesBinding, Product>(R.layout.item_shoes).initItem { position, data ->
             val detailIntent = Intent(this, DetailActivity::class.java).apply {
@@ -48,14 +48,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
         initClick()
         getProfile()
 
-        //untuk getUsernya
         val user = session.getUser()
         if (user != null) {
             binding.home = user
         }
     }
 
-    private fun search(){
+    private fun search() {
         binding.etSearchHome.doOnTextChanged { text, start, before, count ->
             if (text.isNullOrEmpty()) {
                 product.clear()
@@ -79,7 +78,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
         }
     }
 
-    private fun initClick(){
+    private fun initClick() {
         binding.imgProfileHome.setOnClickListener {
             openActivity<ProfileActivity>()
 
@@ -138,7 +137,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     }
 
     private fun getAll() {
-        viewModel.getAllProduk()
+        viewModel.getAllProduct()
     }
 
     private fun getProfile() {

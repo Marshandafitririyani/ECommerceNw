@@ -33,6 +33,7 @@ class LoginViewModel @Inject constructor(
                     session.setValue(Const.TOKEN.API_TOKEN, newToken)
                     _apiResponse.send(ApiResponse().responseSuccess())
                 }
+
                 override suspend fun onError(response: ApiResponse) {
                     super.onError(response)
                     _apiResponse.send(ApiResponse().responseError())

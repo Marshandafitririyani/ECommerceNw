@@ -20,12 +20,6 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.activity_cart) {
 
-    /*    private var product: Product? = null
-     private var cart: Cart? = null
-     private val productt = ArrayList<Cart?>()
-     private val producttAll = ArrayList<Cart?>()*/
-
-    //adapter Cart
     private val adapterCart by lazy {
         object : ReactiveListAdapter<ItemCartBinding, Cart>(R.layout.item_cart) {
             override fun onBindViewHolder(
@@ -38,7 +32,6 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
 
                 holder.binding.data = item
                 holder.binding.btnQty.text = qty.toString()
-                //fungsi penambahan
                 holder.binding.btnPluss.setOnClickListener {
                     if (qty < 100) {
                         qty++
@@ -49,7 +42,6 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                     holder.binding.btnQty.text = qty.toString()
                 }
 
-                //fungsi penguranagan
                 holder.binding.btnMinus.setOnClickListener {
                     if (qty != 1) {
                         qty--
@@ -76,9 +68,9 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         adapter()
 
     }
+
     private fun btnCondition() {
         val listCart = adapterCart.currentList
-        //untuk mengubah warna ketia keranjang ada dapat di cekot dan jika keranjnag tidak ada barang tidak dapata di cekot
         if (listCart.isEmpty()) {
             Log.d("adapter", "cek $listCart")
             binding.btnCheckoutCart.setBackgroundColor(getResources().getColor(com.denzcoskun.imageslider.R.color.grey_font))
@@ -113,10 +105,6 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     showCart()
-//                    viewModel.responseSave.collect { product ->
-//                        Log.d("data produk", "cek ${product}")
-//                        adapterCart.submitList(product)
-//                    }
                     viewModel.responseSave.collect { product ->
                         binding.swipeRefreshLayout.isRefreshing = false
                         adapterCart.submitList(product)

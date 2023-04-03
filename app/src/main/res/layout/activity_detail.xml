@@ -55,7 +55,7 @@
             android:id="@+id/run"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="232dp"
+            android:layout_marginTop="@dimen/_180sdp"
             android:hint="@string/men_s_running_shoes"
             android:text='@{detail.name}'
             android:textColor="@color/blue_100"
@@ -70,7 +70,7 @@
             android:id="@+id/description_detail"
             android:layout_width="@dimen/_280sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="@dimen/_200sdp"
             android:hint="@string/nike_air_jordan_pf_xxxiv_retro_blue_void"
             android:text='@{detail.description}'
             android:textColor="@color/black"
@@ -169,7 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:foreground="?selectableItemBackground"
             android:orientation="horizontal"
             android:padding="@dimen/_2sdp"
@@ -180,21 +180,11 @@
             app:layout_constraintTop_toBottomOf="@+id/select_size"
             tools:listitem="@layout/item_size" />
 
-
-        <!--<androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_checkout_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="bbb"
-            android:background="@color/abu"
-            app:layout_constraintBottom_toBottomOf="parent" />-->
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btn_checkout_detail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
-            android:layout_marginTop="676dp"
+            android:layout_marginTop="@dimen/_513sdp"
             android:background="@color/abu"
             android:foreground="?selectableItemBackground"
             android:gravity="center"
@@ -208,7 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:gravity="center"
                 android:text="@string/checkout4"
                 android:textColor="@color/white"
@@ -224,7 +214,7 @@
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_100sdp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:contentDescription="@string/todo4"
                 android:src="@drawable/ic_arrow"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -1,10 +1,8 @@
 package com.maruchan.ecommerce.ui.profile
 
 import androidx.lifecycle.viewModelScope
-import com.crocodic.core.api.ApiCode
 import com.crocodic.core.api.ApiObserver
 import com.crocodic.core.api.ApiResponse
-import com.crocodic.core.extension.toObject
 import com.google.gson.Gson
 import com.maruchan.ecommerce.api.ApiService
 import com.maruchan.ecommerce.base.viewmodel.BaseViewModel
@@ -45,25 +43,3 @@ class ProfileViewModel @Inject constructor(
     }
 }
 
-/*
-  fun getProfile() = viewModelScope.launch {
-      _apiResponse.send(ApiResponse().responseLoading())
-      ApiObserver(
-          { apiService.getProfile() },
-          false,
-          object : ApiObserver.ResponseListener {
-              override suspend fun onSuccess(response: JSONObject) {
-                  val status = response.getInt(ApiCode.STATUS)
-                  val data = response.getJSONObject(ApiCode.DATA).toObject<User>(gson)
-                  session.saveUser(data)
-                  _apiResponse.send(ApiResponse().responseSuccess())
-              }
-
-              override suspend fun onError(response: ApiResponse) {
-                  super.onError(response)
-                  _apiResponse.send(ApiResponse().responseError())
-              }
-          }
-      )
-  }
-*/

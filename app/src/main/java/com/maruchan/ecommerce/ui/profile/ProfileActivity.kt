@@ -7,7 +7,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.extension.openActivity
-import com.crocodic.core.extension.tos
 import com.crocodic.core.helper.ImagePreviewHelper
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
@@ -38,7 +37,6 @@ class ProfileActivity :
 
         binding.ivLogout.setOnClickListener {
             viewModel.logout()
-//            openActivity<SplashActivity>()
         }
 
         binding.ivEditProfile.setOnClickListener {
@@ -60,11 +58,10 @@ class ProfileActivity :
                             }
                             ApiStatus.SUCCESS -> {
                                 loadingDialog.dismiss()
-                                openActivity<SplashActivity>{
+                                openActivity<SplashActivity> {
                                     finishAffinity()
 
                                 }
-//                                binding.user = session.getUser()
                             }
                             ApiStatus.ERROR -> {
                                 loadingDialog.setResponse(it.message ?: return@collect)
@@ -77,10 +74,4 @@ class ProfileActivity :
             }
         }
     }
-
-
-
-//    private fun getProfile() {
-//        viewModel.getProfile()
-//    }
 }
