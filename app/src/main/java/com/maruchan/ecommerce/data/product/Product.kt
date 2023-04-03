@@ -30,12 +30,9 @@ data class Product(
     val updatedAt: String?,
     @SerializedName("variants")
     val variants: List<Variant?>?,
-   /* @SerializedName("cart")
-    val cart: List<Cart?>?*/
     @SerializedName("product")
     val productt: Productt?
 ) : Parcelable {
-
 
     @Parcelize
     data class Productt(
@@ -103,33 +100,5 @@ data class Product(
         val variantId: Int?,
         var selected: Boolean
     ) : Parcelable
-
-  /*    @Parcelize
-    data class Cart(
-        @SerializedName("user_id")
-        val userId: Int?,
-        @SerializedName("price")
-        val productId: String?,
-        @SerializedName("size_id")
-        val sizeId: Int?,
-        @SerializedName("qty")
-        val qty: Int?,
-        @SerializedName("updated_at")
-        val updatedAt: String?,
-        @SerializedName("created_at")
-        val createdAt: String?,
-        @SerializedName("variant_id")
-        val variantId: Int?,
-        var selected: Boolean
-    ) : Parcelable*/
-//    "id": 5,
-//    "user_id": 1,
-//    "product_id": 1,
-//    "variant_id": 1,
-//    "size_id": 1,
-//    "qty": 24,
-//    "total_cost": "2400000.00",
-//    "created_at": "2022-09-26T03:35:13.000000Z",
-//    "updated_at": "2022-09-26T03:35:13.000000Z"
 }
 

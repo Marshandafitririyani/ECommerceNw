@@ -15,5 +15,6 @@
     <color name="blue_50">#6493BC</color>
     <color name="blue_75">#1D5C73</color>
     <color name="blue_100">#2E5D7F</color>
+    <color name="read">#830000</color>
 
 </resources>

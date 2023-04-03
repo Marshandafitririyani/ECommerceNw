@@ -25,10 +25,15 @@ class DetailViewModel @Inject constructor(
     private val gson: Gson,
 
     ) : BaseViewModel() {
+    //product
     private val _responseSave = MutableSharedFlow<Product>()
     val responseSave = _responseSave.asSharedFlow()
+
+    //image slider
     private val _responseSaveImage = MutableSharedFlow<List<ImageSlider>>()
     val responseSaveImage = _responseSaveImage.asSharedFlow()
+
+    //API response
     private val _responseAPI = MutableSharedFlow<ApiResponse>()
     val responseAPI = _responseAPI.asSharedFlow()
 

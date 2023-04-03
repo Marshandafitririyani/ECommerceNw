@@ -72,6 +72,4 @@ interface ApiService {
     suspend fun deleteCart(
         @Path("id") id: Int
     ): String
-
-
 }

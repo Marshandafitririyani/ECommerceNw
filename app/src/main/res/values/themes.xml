@@ -9,6 +9,7 @@
         <item name="colorSecondary">@color/blue_50</item>
         <item name="colorSecondaryVariant">@color/blue_50</item>
         <item name="colorOnSecondary">@color/black</item>
+        <item name="colorError">@color/read</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/blue_100</item>
         <item name="android:navigationBarColor">@color/blue_20</item>

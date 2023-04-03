@@ -29,6 +29,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     private val product = ArrayList<Product?>()
     private val procuctAll = ArrayList<Product?>()
 
+    //adapter product
     private val adapter by lazy {
         ReactiveListAdapter<ItemShoesBinding, Product>(R.layout.item_shoes).initItem { position, data ->
             val detailIntent = Intent(this, DetailActivity::class.java).apply {
@@ -43,23 +44,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
 
         observe()
         adapter()
+        search()
+        initClick()
         getProfile()
 
+        //untuk getUsernya
         val user = session.getUser()
         if (user != null) {
             binding.home = user
         }
+    }
 
-        binding.imgProfileHome.setOnClickListener {
-            openActivity<ProfileActivity>()
-
-        }
-
-        binding.imgCart.setOnClickListener {
-            openActivity<CartActivity>()
-
-        }
-
+    private fun search(){
         binding.etSearchHome.doOnTextChanged { text, start, before, count ->
             if (text.isNullOrEmpty()) {
                 product.clear()
@@ -80,6 +76,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
             } else {
                 binding.tvEmpty.visibility = View.GONE
             }
+        }
+    }
+
+    private fun initClick(){
+        binding.imgProfileHome.setOnClickListener {
+            openActivity<ProfileActivity>()
+
+        }
+
+        binding.imgCart.setOnClickListener {
+            openActivity<CartActivity>()
+
         }
     }
 

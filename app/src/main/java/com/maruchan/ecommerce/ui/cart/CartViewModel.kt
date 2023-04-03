@@ -25,8 +25,11 @@ class CartViewModel @Inject constructor(
     private val session: Session
 
 ) : BaseViewModel() {
+    //cart
     private val _responseSaveCart = MutableSharedFlow<List<Cart>>()
     val responseSave = _responseSaveCart.asSharedFlow()
+
+    //API response
     private val _responseAPI = MutableSharedFlow<ApiResponse>()
     val responseAPI = _responseAPI.asSharedFlow()
 
@@ -36,7 +39,7 @@ class CartViewModel @Inject constructor(
 
     fun showChart() = viewModelScope.launch {
         ApiObserver(
-            { apiService.showChart()},
+            { apiService.showChart() },
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
@@ -47,31 +50,31 @@ class CartViewModel @Inject constructor(
             }
         )
     }
-   /*
-   fun showChart() = viewModelScope.launch {
-       ApiObserver(
-           { apiService.showChart()},
-           false,
-           object : ApiObserver.ResponseListener {
-               override suspend fun onSuccess(response: JSONObject) {
-                   val data = response.getJSONArray(ApiCode.DATA).toList<Product>(gson)
-                   _responseSaveCart.emit(data)
-                   Timber.d("cek api ${data.size}")
-               }
-           }
-       )
-   }
-*/
-
-    fun editCart(id: Int?,qty: Int?) = viewModelScope.launch {
+    /*
+    fun showChart() = viewModelScope.launch {
         ApiObserver(
-            { apiService.editCart(id,qty)},
+            { apiService.showChart()},
+            false,
+            object : ApiObserver.ResponseListener {
+                override suspend fun onSuccess(response: JSONObject) {
+                    val data = response.getJSONArray(ApiCode.DATA).toList<Product>(gson)
+                    _responseSaveCart.emit(data)
+                    Timber.d("cek api ${data.size}")
+                }
+            }
+        )
+    }
+ */
+
+    fun editCart(id: Int?, qty: Int?) = viewModelScope.launch {
+        ApiObserver(
+            { apiService.editCart(id, qty) },
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
                     /*val data = response.getJSONObject(ApiCode.DATA).toObject<Cart>(gson)
                     _responseSaveCart.emit(data)*/
-                   /* Timber.d("cek api ${data.size}")*/
+                    /* Timber.d("cek api ${data.size}")*/
                 }
 
                 override suspend fun onError(response: ApiResponse) {
@@ -80,6 +83,7 @@ class CartViewModel @Inject constructor(
             }
         )
     }
+
     fun deleteCart(id: Int) = viewModelScope.launch {
         _responseAPI.emit(ApiResponse().responseLoading())
         ApiObserver(
@@ -89,6 +93,7 @@ class CartViewModel @Inject constructor(
                 override suspend fun onSuccess(response: JSONObject) {
                     _responseAPI.emit(ApiResponse().responseSuccess("Delete Success"))
                 }
+
                 override suspend fun onError(response: ApiResponse) {
                     super.onError(response)
                     _responseAPI.emit(ApiResponse().responseError())

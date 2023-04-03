@@ -41,10 +41,11 @@ class CheckoutViewModel @Inject constructor(
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
                     /*val status = response.getInt(ApiCode.STATUS)*/
-        /*            val data = response.getJSONArray(ApiCode.DATA).toList<Product>(gson)
-                    _responseSave.emit(data)*/
+                    /*            val data = response.getJSONArray(ApiCode.DATA).toList<Product>(gson)
+                                _responseSave.emit(data)*/
                     _apiResponse.send(ApiResponse().responseSuccess("Checkout Succes"))
                 }
+
                 override suspend fun onError(response: ApiResponse) {
                     super.onError(response)
                     _apiResponse.send(ApiResponse(message = "Error").responseError())

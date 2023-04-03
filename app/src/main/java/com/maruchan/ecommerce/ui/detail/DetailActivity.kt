@@ -1,12 +1,15 @@
 package com.maruchan.ecommerce.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.base.adapter.ReactiveListAdapter
+import com.crocodic.core.extension.openActivity
+import com.crocodic.core.extension.snacked
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.maruchan.ecommerce.R
@@ -18,6 +21,8 @@ import com.maruchan.ecommerce.databinding.ActivityDetailBinding
 import com.maruchan.ecommerce.databinding.ItemColorShoesBinding
 import com.maruchan.ecommerce.databinding.ItemSizeBinding
 import com.maruchan.ecommerce.helper.imageSlider.ImageSlider
+import com.maruchan.ecommerce.ui.checkout.CheckoutActivity
+import com.maruchan.ecommerce.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -32,7 +37,7 @@ class DetailActivity :
     private var listSize = ArrayList<Product.Size?>()
     private var selectSize: Product.Size? = null
 
-
+    //adapter color
     private val adapterColor by lazy {
         object : ReactiveListAdapter<ItemColorShoesBinding, Variant>(R.layout.item_color_shoes) {
             override fun onBindViewHolder(
@@ -40,13 +45,13 @@ class DetailActivity :
                 position: Int
             ) {
                 listColor[position]?.let { data ->
-                    //view
+                    //menampilkaan view
                     holder.binding.data = data
                     holder.binding.backgroundColorShoes.setBackgroundColor(
                         if (data.selected) applicationContext.getColor(R.color.abu)
                         else applicationContext.getColor(R.color.white)
                     )
-//data
+                    //menampilkan data
                     holder.itemView.setOnClickListener {
                         listColor.forEachIndexed { index, variant ->
                             variant?.selected = index == position
@@ -61,6 +66,7 @@ class DetailActivity :
             }
         }.initItem()
     }
+    //adapter size
     private val adapterSize by lazy {
         object : ReactiveListAdapter<ItemSizeBinding, Product.Size>(R.layout.item_size) {
             override fun onBindViewHolder(
@@ -81,6 +87,14 @@ class DetailActivity :
                         selectSize = data
                         Timber.d("CekListColors: $listSize")
                         println("CekListColors: $listSize")
+                        Log.d("cek selected","cek selrcted : ${data.selected}")
+                        if(data.selected) {
+                            binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.blue_75))
+                        }else{
+                            binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.abu))
+                           /* binding.root.snacked("Tambahkan Produk ke Keranjang Terlebih dahulu")*/
+
+                        }
                     }
                 }
             }
@@ -91,6 +105,7 @@ class DetailActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //getParcelable
         product = intent.getParcelableExtra(Const.LIST.PRODUCK)
         binding.detail = product
 
@@ -102,6 +117,7 @@ class DetailActivity :
 
     }
 
+    //kondisi untuk warnanya(color)
     private fun condititonForColor(idVarian: Int?) {
         if (selectColor == null) {
             binding.rvSize.visibility = View.INVISIBLE
@@ -111,6 +127,7 @@ class DetailActivity :
                 it?.variantId == idVarian
             }
             adapterSize.submitList(filterSize)
+
         }
     }
 
@@ -126,6 +143,7 @@ class DetailActivity :
 
     }
 
+    //adapter
     private fun adapter() {
         binding.rvColor.adapter = adapterColor
         binding.rvSize.visibility = View.INVISIBLE
@@ -133,6 +151,7 @@ class DetailActivity :
 
     }
 
+    //kondisi loading
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -152,10 +171,12 @@ class DetailActivity :
                         }
                     }
                 }
+                //untuk submit varian, color dan size
                 launch {
                     viewModel.responseSave.collect {
                         product = it
                         adapterColor.submitList(it.variants)
+
                         listColor.clear()
                         it.variants?.let { list ->
                             listColor.addAll(list)
@@ -167,6 +188,7 @@ class DetailActivity :
                         }
                     }
                 }
+                //untuk memanggil image slidernya
                 launch {
                     viewModel.responseSaveImage.collect {
                         initSlider(it)
@@ -182,35 +204,28 @@ class DetailActivity :
     }
 
     private fun addCart() {
-        selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
-    }
+        Log.d("cekSelectedAdd","cekSelectedAdd : ${selectSize?.selected}")
+        if (selectSize?.selected == true) {
+            selectSize?.let {
+                selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
 
-    /*private fun addCart() {
-       *//* product?.id?.let { viewModel.addCaert(sizeId = String(), qty = String()) }*//*
-            binding.btnCheckoutDetail.setOnClickListener {
-                val myDb = null
-                val data = myDb.daoKeranjang().getProduct(it)
-                if (data == null) {
-                    insert()
-                } else {
-                    data.jumlah += 1
-                    update(data)
-                }
             }
+        } else {
+            binding.root.snacked("Pilih Variant dan Ukuran Terlebih dahulu")
+           }
+        }
+
+  /*  private fun addCart() {
+        selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
+
+//        if (selectSize?.selected){
+//            binding.root.snacked("tambah")
+//        }else{
+//            selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
+//        }
     }*/
 
-    /* private fun insert() {
-         CompositeDisposable().add(Observable.fromCallable { myDb.daoKeranjang().insert(product) }
-             .subscribeOn(Schedulers.computation())
-             .observeOn(AndroidSchedulers.mainThread())
-             .subscribe {
-                 addCart()
-                 Log.d("respons", "data inserted")
-                 Toast.makeText(this, "Berhasil menambah kekeranjang", Toast.LENGTH_SHORT).show()
-             })
-     }*/
-
-
+    //image slider
     private fun initSlider(data: List<ImageSlider>) {
         val imageList = ArrayList<SlideModel>()
         data.forEach {
@@ -220,9 +235,4 @@ class DetailActivity :
     }
 }
 
-/*
-private fun ImagePreviewHelper.show(imageSliderDetail: com.denzcoskun.imageslider.ImageSlider, image: String?) {
-    TODO("Not yet implemented")
-}
-*/
 

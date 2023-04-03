@@ -24,7 +24,8 @@ import javax.net.ssl.SSLContext
 @InstallIn(SingletonComponent::class)
 @Module
 class DataModul {
-    @Provides fun provideSession(@ApplicationContext context: Context, gson: Gson) = Session(context, gson)
+    @Provides
+    fun provideSession(@ApplicationContext context: Context, gson: Gson) = Session(context, gson)
 
     @Provides
     fun provideGson() =

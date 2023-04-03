@@ -40,7 +40,6 @@ class EditProfileViewModel @Inject constructor(
 
                 }
             }
-
             override suspend fun onError(response: ApiResponse) {
                 super.onError(response)
                 _apiResponse.send(ApiResponse().responseError())

@@ -1,16 +1,16 @@
 package com.maruchan.ecommerce.ui.cart
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.base.adapter.ReactiveListAdapter
 import com.crocodic.core.extension.openActivity
-import com.crocodic.core.helper.ImagePreviewHelper
+import com.crocodic.core.extension.snacked
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
 import com.maruchan.ecommerce.data.cart.Cart
-import com.maruchan.ecommerce.data.product.Product
 import com.maruchan.ecommerce.databinding.ActivityCartBinding
 import com.maruchan.ecommerce.databinding.ItemCartBinding
 import com.maruchan.ecommerce.ui.checkout.CheckoutActivity
@@ -20,11 +20,12 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.activity_cart) {
 
-    private var product: Product? = null
-    private var cart: Cart? = null
-    private val productt = ArrayList<Cart?>()
-    private val producttAll = ArrayList<Cart?>()
+    /*    private var product: Product? = null
+     private var cart: Cart? = null
+     private val productt = ArrayList<Cart?>()
+     private val producttAll = ArrayList<Cart?>()*/
 
+    //adapter Cart
     private val adapterCart by lazy {
         object : ReactiveListAdapter<ItemCartBinding, Cart>(R.layout.item_cart) {
             override fun onBindViewHolder(
@@ -37,22 +38,24 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
 
                 holder.binding.data = item
                 holder.binding.btnQty.text = qty.toString()
+                //fungsi penambahan
                 holder.binding.btnPluss.setOnClickListener {
                     if (qty < 100) {
                         qty++
                         item.id?.let { it1 -> editCart(it1, qty) }
 
                     }
-//                    notifyItemChanged(position
+
                     holder.binding.btnQty.text = qty.toString()
                 }
 
+                //fungsi penguranagan
                 holder.binding.btnMinus.setOnClickListener {
                     if (qty != 1) {
                         qty--
                         item.id?.let { it1 -> editCart(it1, qty) }
                     }
-//                    notifyItemChanged(position)
+
                     holder.binding.btnQty.text = qty.toString()
                 }
 
@@ -60,25 +63,10 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                     productId?.let {
                         viewModel.deleteCart(id = it)
                     }
-
                 }
-
             }
-//            val detailIntent = Intent(this, CartActivity::class.java).apply {
-//                putExtra(Const.LIST.PRODUCK, data)
-//            }
-//            startActivity(detailIntent)
         }
     }
-
-    /* private val adapterCart by lazy {
-         ReactiveListAdapter<ItemCartBinding, Product>(R.layout.item_cart).initItem { position, data ->
-             val detailIntent = Intent(this, CartActivity::class.java).apply {
-                 putExtra(Const.LIST.PRODUCK, data)
-             }
-             startActivity(detailIntent)
-         }
-     }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,17 +76,30 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         adapter()
 
     }
+    private fun btnCondition() {
+        val listCart = adapterCart.currentList
+        //untuk mengubah warna ketia keranjang ada dapat di cekot dan jika keranjnag tidak ada barang tidak dapata di cekot
+        if (listCart.isEmpty()) {
+            Log.d("adapter", "cek $listCart")
+            binding.btnCheckoutCart.setBackgroundColor(getResources().getColor(com.denzcoskun.imageslider.R.color.grey_font))
+            binding.btnCheckoutCart.setOnClickListener {
+                binding.root.snacked("Tambahkan Produk ke Keranjang Terlebih dahulu")
+            }
+        } else {
+            binding.btnCheckoutCart.setBackgroundColor(getResources().getColor(R.color.blue_75))
+            binding.btnCheckoutCart.setOnClickListener {
+                openActivity<CheckoutActivity>()
+                finish()
+            }
+        }
+    }
 
     private fun initClick() {
         binding.ivBackCart.setOnClickListener {
             finish()
         }
-        binding.btnCheckoutCart.setOnClickListener {
-            openActivity<CheckoutActivity>()
-        }
         binding.swipeRefreshLayout.setOnRefreshListener {
             observe()
-//            product?.id?.let { viewModel.showChart() }
         }
 
     }
@@ -107,22 +108,6 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         binding.rvHome.adapter = adapterCart
     }
 
-    /*private fun observe() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    getCart()
-//                    viewModel.responseSave.collect { product ->
-//                        Log.d("data produk", "cek ${product}")
-//                        adapterCart.submitList(product)
-//                    }
-                    viewModel.responseSaveProduct.collect{ product ->
-                        adapterCart.submitList(product)
-                    }
-                }
-            }
-        }
-    }*/
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -135,16 +120,9 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                     viewModel.responseSave.collect { product ->
                         binding.swipeRefreshLayout.isRefreshing = false
                         adapterCart.submitList(product)
+                        btnCondition()
                     }
                 }
-                /*viewModel.responseSave.collect {
-                 binding.swipeRefreshLayout.isRefreshing = false
-                        productt.clear()
-                    producttAll.addAll(it)
-                    binding?.rvHome?.adapter?.notifyDataSetChanged()
-
-                    }*/
-
             }
         }
 
@@ -158,21 +136,5 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         viewModel.editCart(id, qty)
     }
 
-    /*private fun deleteCart(){
-        viewModel.deleteCart()
-    }*/
 }
-
-
-  /* private fun buttonClicked(btn: Button) {
-     if (isOperatorClicked) {
-         operand1 = strNumber.toString().toInt()
-         strNumber.clear()
-         isOperatorClicked = false
-     }
-     strNumber.append(btn.text)
-     nothingTV.text = strNumbe
-
-enum class Operator {MUL, DIV, ADD, SUB, NONE}
-*/
 

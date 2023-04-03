@@ -27,6 +27,8 @@ class ProfileActivity :
         if (user != null) {
             binding.user = user
         }
+
+
         binding.ivImageProfile.setOnClickListener {
             ImagePreviewHelper(this).show(binding.ivImageProfile, user?.image)
         }

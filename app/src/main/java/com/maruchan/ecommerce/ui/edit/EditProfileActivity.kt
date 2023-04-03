@@ -51,6 +51,7 @@ class EditProfileActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //menampilkan foto nama dan phone pada edit profile
         photo = intent.getStringExtra("photoFile")
         username = intent.getStringExtra("username")
         phone = intent.getStringExtra("phoneNumber")
@@ -112,9 +113,6 @@ class EditProfileActivity :
         binding.btnSaveEditProfil.setOnClickListener {
             validateForm()
         }
-       /* binding.ivImageEditProfil.setOnClickListener {
-            ImagePreviewHelper(this).show(binding.ivImageEditProfil, user?.image)
-        }*/
 
         binding.ivCameraEditProfil.setOnClickListener {
             if (checkPermissionGallery()) {
