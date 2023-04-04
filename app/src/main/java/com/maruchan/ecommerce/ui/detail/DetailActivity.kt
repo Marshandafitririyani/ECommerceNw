@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.base.adapter.ReactiveListAdapter
-import com.crocodic.core.extension.openActivity
 import com.crocodic.core.extension.snacked
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -21,11 +20,8 @@ import com.maruchan.ecommerce.databinding.ActivityDetailBinding
 import com.maruchan.ecommerce.databinding.ItemColorShoesBinding
 import com.maruchan.ecommerce.databinding.ItemSizeBinding
 import com.maruchan.ecommerce.helper.imageSlider.ImageSlider
-import com.maruchan.ecommerce.ui.checkout.CheckoutActivity
-import com.maruchan.ecommerce.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -95,7 +91,7 @@ class DetailActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        product = intent.getParcelableExtra(Const.LIST.PRODUCK)
+        product = intent.getParcelableExtra(Const.LIST.PRODUCT)
         binding.detail = product
 
         observe()

@@ -33,7 +33,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     private val adapter by lazy {
         ReactiveListAdapter<ItemShoesBinding, Product>(R.layout.item_shoes).initItem { position, data ->
             val detailIntent = Intent(this, DetailActivity::class.java).apply {
-                putExtra(Const.LIST.PRODUCK, data)
+                putExtra(Const.LIST.PRODUCT, data)
             }
             startActivity(detailIntent)
         }
