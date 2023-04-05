@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.base.adapter.ReactiveListAdapter
-import com.crocodic.core.extension.openActivity
 import com.crocodic.core.extension.snacked
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -21,8 +20,6 @@ import com.maruchan.ecommerce.databinding.ActivityDetailBinding
 import com.maruchan.ecommerce.databinding.ItemColorShoesBinding
 import com.maruchan.ecommerce.databinding.ItemSizeBinding
 import com.maruchan.ecommerce.helper.imageSlider.ImageSlider
-import com.maruchan.ecommerce.ui.checkout.CheckoutActivity
-import com.maruchan.ecommerce.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -88,14 +85,15 @@ class DetailActivity :
                         Timber.d("CekListColors: $listSize")
                         println("CekListColors: $listSize")
                         Log.d("cek selected","cek selrcted : ${data.selected}")
+                        //untuk mengubah warna saat ingin di add cart
                         if(data.selected) {
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.blue_75))
                         }else{
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.abu))
-                           /* binding.root.snacked("Tambahkan Produk ke Keranjang Terlebih dahulu")*/
 
                         }
                     }
+
                 }
             }
 
@@ -199,31 +197,23 @@ class DetailActivity :
         }
     }
 
+    //untuk productnya
     private fun getProduct() {
         product?.id?.let { viewModel.getProductById(it) }
     }
 
+    //untuk kondisi saat menambahkan barang ke cart dan buttom berubah warna dan jika belum memilih dia akan mengeluarkan pesan
     private fun addCart() {
         Log.d("cekSelectedAdd","cekSelectedAdd : ${selectSize?.selected}")
         if (selectSize?.selected == true) {
             selectSize?.let {
                 selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
-
             }
         } else {
             binding.root.snacked("Pilih Variant dan Ukuran Terlebih dahulu")
            }
         }
 
-  /*  private fun addCart() {
-        selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
-
-//        if (selectSize?.selected){
-//            binding.root.snacked("tambah")
-//        }else{
-//            selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
-//        }
-    }*/
 
     //image slider
     private fun initSlider(data: List<ImageSlider>) {

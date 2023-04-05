@@ -22,11 +22,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.extension.*
 import com.crocodic.core.helper.DateTimeHelper
-import com.crocodic.core.helper.ImagePreviewHelper
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
 import com.maruchan.ecommerce.databinding.ActivityEditProfileBinding
-import com.maruchan.ecommerce.ui.profile.ProfileActivity
 import dagger.hilt.android.AndroidEntryPoint
 import id.zelory.compressor.Compressor
 import id.zelory.compressor.constraint.format

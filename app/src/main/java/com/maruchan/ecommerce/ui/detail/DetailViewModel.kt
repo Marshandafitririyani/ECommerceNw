@@ -61,8 +61,6 @@ class DetailViewModel @Inject constructor(
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
-//                    val status = response.getInt(ApiCode.STATUS)
-//                    val data = response.getJSONObject(ApiCode.DATA).toObject<Product>(gson)
                     _responseAPI.emit(ApiResponse().responseSuccess("Add Cart Success"))
                 }
                 override suspend fun onError(response: ApiResponse) {

@@ -55,6 +55,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
         }
     }
 
+    //fungsi untuk searchnya
     private fun search(){
         binding.etSearchHome.doOnTextChanged { text, start, before, count ->
             if (text.isNullOrEmpty()) {
@@ -71,6 +72,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                 binding.rvHome.adapter?.notifyDataSetChanged()
                 binding.rvHome.adapter?.notifyItemInserted(0)
             }
+            //untuk menampilkan is empty saat di search kosong
             if (product.isEmpty()) {
                 binding.tvEmpty.visibility = View.VISIBLE
             } else {
@@ -84,7 +86,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
             openActivity<ProfileActivity>()
 
         }
-
         binding.imgCart.setOnClickListener {
             openActivity<CartActivity>()
 
@@ -103,6 +104,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                     viewModel.apiResponse.collect {
                         when (it.status) {
                             ApiStatus.SUCCESS -> {
+                                //untuk getusernya
                                 loadingDialog.dismiss()
                                 binding.home = session.getUser()
                             }
@@ -111,6 +113,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                     }
                 }
                 launch {
+                    //untuk menampilkan productnya
                     getAll()
                     viewModel.responseSave.collect { product ->
                         Log.d("data produk", "cek ${product}")
@@ -125,6 +128,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                         product.addAll(it)
                         procuctAll.addAll(it)
                         adapter.submitList(product)
+                        //untuk menampilkan is empty saat di search kosong
                         if (product.isEmpty()) {
                             binding.tvEmpty.visibility = View.VISIBLE
                         } else {

@@ -23,6 +23,7 @@ class ProfileActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //getprofile
         val user = session.getUser()
         if (user != null) {
             binding.user = user
@@ -41,6 +42,7 @@ class ProfileActivity :
 //            openActivity<SplashActivity>()
         }
 
+        //put extra
         binding.ivEditProfile.setOnClickListener {
             val kembali = Intent(this, EditProfileActivity::class.java).apply {
                 putExtra("photoFile", binding?.user?.image)
@@ -77,10 +79,4 @@ class ProfileActivity :
             }
         }
     }
-
-
-
-//    private fun getProfile() {
-//        viewModel.getProfile()
-//    }
 }

@@ -20,11 +20,6 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.activity_cart) {
 
-    /*    private var product: Product? = null
-     private var cart: Cart? = null
-     private val productt = ArrayList<Cart?>()
-     private val producttAll = ArrayList<Cart?>()*/
-
     //adapter Cart
     private val adapterCart by lazy {
         object : ReactiveListAdapter<ItemCartBinding, Cart>(R.layout.item_cart) {
@@ -59,6 +54,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                     holder.binding.btnQty.text = qty.toString()
                 }
 
+                //fungsi delete cart
                 holder.binding.imgDelet.setOnClickListener {
                     productId?.let {
                         viewModel.deleteCart(id = it)
@@ -78,7 +74,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
     }
     private fun btnCondition() {
         val listCart = adapterCart.currentList
-        //untuk mengubah warna ketia keranjang ada dapat di cekot dan jika keranjnag tidak ada barang tidak dapata di cekot
+        //untuk mengubah warna ketika keranjang ada dapat di cekot dan jika keranjnag tidak ada barang tidak dapat di cekot
         if (listCart.isEmpty()) {
             Log.d("adapter", "cek $listCart")
             binding.btnCheckoutCart.setBackgroundColor(getResources().getColor(com.denzcoskun.imageslider.R.color.grey_font))
@@ -104,6 +100,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
 
     }
 
+    //adapter
     private fun adapter() {
         binding.rvHome.adapter = adapterCart
     }
@@ -113,10 +110,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     showCart()
-//                    viewModel.responseSave.collect { product ->
-//                        Log.d("data produk", "cek ${product}")
-//                        adapterCart.submitList(product)
-//                    }
+                    //untuk swipe refresh
                     viewModel.responseSave.collect { product ->
                         binding.swipeRefreshLayout.isRefreshing = false
                         adapterCart.submitList(product)
@@ -128,10 +122,12 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
 
     }
 
+    //untuk menampilkan list pada cart
     private fun showCart() {
         viewModel.showChart()
     }
 
+    //untuk mengubah = menambah, mengurangi dan menghapus
     private fun editCart(id: Int, qty: Int) {
         viewModel.editCart(id, qty)
     }

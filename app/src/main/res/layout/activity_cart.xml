@@ -64,8 +64,10 @@
                 android:padding="@dimen/_6sdp"
                 app:layout_constraintBottom_toTopOf="@id/btn_checkout_cart"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/my_bag">
+                app:layout_constraintTop_toBottomOf="@id/my_bag"
+                app:layout_constraintVertical_bias="1.0">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_home"
@@ -75,8 +77,22 @@
                     app:reverseLayout="true"
                     app:stackFromEnd="true"
                     tools:listitem="@layout/item_cart" />
-
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+           <!-- <ImageView
+                android:id="@+id/tv_empty"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_260sdp"
+                android:gravity="center"
+                android:src="@drawable/img_empty_search"
+                android:textSize="@dimen/_30sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/swipe_refresh_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_bag"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_checkout_cart"
@@ -118,6 +134,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
+
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
