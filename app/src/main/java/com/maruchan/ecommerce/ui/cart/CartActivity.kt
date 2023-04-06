@@ -1,5 +1,6 @@
 package com.maruchan.ecommerce.ui.cart
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Lifecycle
@@ -38,10 +39,8 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                         item.id?.let { it1 -> editCart(it1, qty) }
 
                     }
-
                     holder.binding.btnQty.text = qty.toString()
                 }
-
                 holder.binding.btnMinus.setOnClickListener {
                     if (qty != 1) {
                         qty--
@@ -52,9 +51,20 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                 }
 
                 holder.binding.imgDelet.setOnClickListener {
-                    productId?.let {
-                        viewModel.deleteCart(id = it)
-                    }
+                    val builder = AlertDialog.Builder(this@CartActivity)
+                    builder.setMessage("Apakah Anda Ingin Menghapus Produk")
+                        .setCancelable(false)
+                        .setPositiveButton("Delete") { dialog, id ->
+                            productId?.let {
+                                viewModel.deleteCart(id = it)
+                            }
+                        }
+                        .setNegativeButton("Cancel") { dialog, id ->
+                            dialog.dismiss()
+                        }
+                    val alert = builder.create()
+                    alert.show()
+
                 }
             }
         }
