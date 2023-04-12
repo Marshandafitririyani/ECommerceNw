@@ -3,10 +3,8 @@ package com.maruchan.ecommerce.ui.checkout
 import androidx.lifecycle.viewModelScope
 import com.crocodic.core.api.ApiObserver
 import com.crocodic.core.api.ApiResponse
-import com.google.gson.Gson
 import com.maruchan.ecommerce.api.ApiService
 import com.maruchan.ecommerce.base.viewmodel.BaseViewModel
-import com.maruchan.ecommerce.data.session.Session
 import com.maruchan.ecommerce.data.product.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,8 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class CheckoutViewModel @Inject constructor(
     private val apiService: ApiService,
-    private val session: Session,
-    private val gson: Gson,
 
     ) : BaseViewModel() {
 

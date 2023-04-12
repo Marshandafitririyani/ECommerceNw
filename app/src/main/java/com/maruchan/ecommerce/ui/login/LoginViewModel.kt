@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import com.crocodic.core.api.ApiCode
 import com.crocodic.core.api.ApiObserver
 import com.crocodic.core.api.ApiResponse
-import com.google.gson.Gson
 import com.maruchan.ecommerce.api.ApiService
 import com.maruchan.ecommerce.base.viewmodel.BaseViewModel
 import com.maruchan.ecommerce.data.constant.Const
@@ -17,7 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val apiService: ApiService,
-    private val gson: Gson,
     private val session: Session
 
 ) : BaseViewModel() {

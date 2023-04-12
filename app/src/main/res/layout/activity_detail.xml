@@ -17,7 +17,7 @@
         tools:context=".ui.detail.DetailActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +184,7 @@
             android:id="@+id/btn_checkout_detail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
-            android:layout_marginTop="@dimen/_513sdp"
+            android:layout_marginTop="@dimen/_520sdp"
             android:background="@color/abu"
             android:foreground="?selectableItemBackground"
             android:gravity="center"

@@ -3,7 +3,6 @@ package com.maruchan.ecommerce.ui.profile
 import androidx.lifecycle.viewModelScope
 import com.crocodic.core.api.ApiObserver
 import com.crocodic.core.api.ApiResponse
-import com.google.gson.Gson
 import com.maruchan.ecommerce.api.ApiService
 import com.maruchan.ecommerce.base.viewmodel.BaseViewModel
 import com.maruchan.ecommerce.data.session.Session
@@ -17,7 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val apiService: ApiService,
-    private val gson: Gson,
     private val session: Session,
 
     ) : BaseViewModel() {
@@ -34,6 +32,7 @@ class ProfileViewModel @Inject constructor(
                     session.clearAll()
                     _apiResponse.send(ApiResponse().responseSuccess("Logout Success"))
                 }
+
                 override suspend fun onError(response: ApiResponse) {
                     super.onError(response)
                     _apiResponse.send(ApiResponse().responseError())

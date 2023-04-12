@@ -6,6 +6,5 @@ object Const {
     }
     object LIST{
         const val PRODUCT = "product"
-        const val RELOAD = 876
     }
 }

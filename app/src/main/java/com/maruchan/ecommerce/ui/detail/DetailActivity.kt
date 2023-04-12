@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.base.adapter.ReactiveListAdapter
-import com.crocodic.core.extension.snacked
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.maruchan.ecommerce.R
@@ -75,9 +74,9 @@ class DetailActivity :
                         }
                         notifyDataSetChanged()
                         selectSize = data
-                        if(data.selected) {
+                        if (data.selected) {
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.blue_75))
-                        }else{
+                        } else {
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.abu))
 
                         }
@@ -183,15 +182,14 @@ class DetailActivity :
     }
 
     private fun addCart() {
-        Log.d("cekSelectedAdd","cekSelectedAdd : ${selectSize?.selected}")
+        Log.d("cekSelectedAdd", "cekSelectedAdd : ${selectSize?.selected}")
         if (selectSize?.selected == true) {
             selectSize?.let {
                 selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
             }
         } else {
-            binding.root.snacked("Pilih Variant dan Ukuran Terlebih dahulu")
-           }
         }
+    }
 
     private fun initSlider(data: List<ImageSlider>) {
         val imageList = ArrayList<SlideModel>()

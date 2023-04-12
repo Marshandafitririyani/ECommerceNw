@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import org.json.JSONObject
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
