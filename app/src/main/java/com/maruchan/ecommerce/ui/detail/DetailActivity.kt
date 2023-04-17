@@ -187,7 +187,6 @@ class DetailActivity :
             selectSize?.let {
                 selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
             }
-        } else {
         }
     }
 
