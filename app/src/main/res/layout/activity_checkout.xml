@@ -93,7 +93,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_alamat_checkout"
+            android:id="@+id/et_addres_checkout"
             android:layout_width="@dimen/_270sdp"
             android:layout_height="@dimen/_45sdp"
             android:layout_gravity="center"
@@ -124,7 +124,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_provinsi_checkout"
+            android:id="@+id/et_province_checkout"
             android:layout_width="@dimen/_270sdp"
             android:layout_height="@dimen/_45sdp"
             android:layout_gravity="center"
@@ -156,7 +156,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_kota_checkout"
+            android:id="@+id/et_city_checkout"
             android:layout_width="@dimen/_270sdp"
             android:layout_height="@dimen/_45sdp"
             android:layout_gravity="center"
@@ -186,7 +186,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_kecamatan_checkout"
+            android:id="@+id/et_subdistrict_checkout"
             android:layout_width="@dimen/_270sdp"
             android:layout_height="@dimen/_45sdp"
             android:layout_gravity="center"

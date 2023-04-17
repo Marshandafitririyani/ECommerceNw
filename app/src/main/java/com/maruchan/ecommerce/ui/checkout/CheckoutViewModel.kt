@@ -23,14 +23,14 @@ class CheckoutViewModel @Inject constructor(
     val responseSave = _responseSave.asSharedFlow()
 
     fun checkout(
-        alamat: String?,
-        provinsi: String?,
-        kota: String?,
-        kecamatan: String?,
-        catatan: String?
+        addres: String?,
+        province: String?,
+        city: String?,
+        subdistrict: String?,
+        note: String?
     ) = viewModelScope.launch {
         ApiObserver(
-            { apiService.checkout(alamat, provinsi, kota, kecamatan, catatan) },
+            { apiService.checkout(addres, province, city, subdistrict, note) },
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
