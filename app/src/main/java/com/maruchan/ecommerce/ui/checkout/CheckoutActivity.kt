@@ -22,18 +22,18 @@ class CheckoutActivity :
         super.onCreate(savedInstanceState)
 
         binding.btnCheckoutCheckout.setOnClickListener {
-            if (binding.etAlamatCheckout.isEmptyRequired(R.string.label_must_fill) ||
-                binding.etProvinsiCheckout.isEmptyRequired(R.string.label_must_fill) ||
-                binding.etKotaCheckout.isEmptyRequired(R.string.label_must_fill) ||
-                binding.etKecamatanCheckout.isEmptyRequired(R.string.label_must_fill) ||
+            if (binding.etAddresCheckout.isEmptyRequired(R.string.label_must_fill) ||
+                binding.etProvinceCheckout.isEmptyRequired(R.string.label_must_fill) ||
+                binding.etCityCheckout.isEmptyRequired(R.string.label_must_fill) ||
+                binding.etSubdistrictCheckout.isEmptyRequired(R.string.label_must_fill) ||
                 binding.etNoteCheckout.isEmptyRequired(R.string.label_must_fill)
             ) {
                 return@setOnClickListener
             }
-            val addres = binding.etAlamatCheckout.textOf()
-            val province = binding.etProvinsiCheckout.textOf()
-            val city = binding.etKotaCheckout.textOf()
-            val subdistrict = binding.etKecamatanCheckout.textOf()
+            val addres = binding.etAddresCheckout.textOf()
+            val province = binding.etProvinceCheckout.textOf()
+            val city = binding.etCityCheckout.textOf()
+            val subdistrict = binding.etSubdistrictCheckout.textOf()
             val note = binding.etNoteCheckout.textOf()
 
             viewModel.checkout(addres, province, city, subdistrict, note)
