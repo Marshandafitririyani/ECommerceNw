@@ -1,5 +1,6 @@
 package com.maruchan.ecommerce.ui.cart
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Lifecycle
@@ -56,9 +57,20 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
 
                 //fungsi delete cart
                 holder.binding.imgDelet.setOnClickListener {
-                    productId?.let {
-                        viewModel.deleteCart(id = it)
-                    }
+                    val builder = AlertDialog.Builder(this@CartActivity)
+                    builder.setMessage("Do you want to delete the product")
+                        .setCancelable(false)
+                        .setPositiveButton("Delete") { dialog, id ->
+                            productId?.let {
+                                viewModel.deleteCart(id = it)
+                            }
+                        }
+                        .setNegativeButton("Cancel") { dialog, id ->
+                            dialog.dismiss()
+                        }
+                    val alert = builder.create()
+                    alert.show()
+
                 }
             }
         }
