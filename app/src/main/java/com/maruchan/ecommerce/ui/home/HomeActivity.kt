@@ -45,6 +45,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
         observe()
         adapter()
         search()
+        getAll()
         initClick()
         getProfile()
 
@@ -114,9 +115,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                 }
                 launch {
                     //untuk menampilkan productnya
-                    getAll()
                     viewModel.responseSave.collect { product ->
-                        Log.d("data produk", "cek ${product}")
                         adapter.submitList(product)
                     }
                 }

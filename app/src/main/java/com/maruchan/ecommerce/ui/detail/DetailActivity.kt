@@ -84,7 +84,6 @@ class DetailActivity :
                         selectSize = data
                         Timber.d("CekListColors: $listSize")
                         println("CekListColors: $listSize")
-                        Log.d("cek selected","cek selrcted : ${data.selected}")
                         //untuk mengubah warna saat ingin di add cart
                         if(data.selected) {
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.blue_75))
@@ -204,14 +203,11 @@ class DetailActivity :
 
     //untuk kondisi saat menambahkan barang ke cart dan buttom berubah warna dan jika belum memilih dia akan mengeluarkan pesan
     private fun addCart() {
-        Log.d("cekSelectedAdd","cekSelectedAdd : ${selectSize?.selected}")
         if (selectSize?.selected == true) {
             selectSize?.let {
                 selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
             }
-        } else {
-            binding.root.snacked("Pilih Variant dan Ukuran Terlebih dahulu")
-           }
+        }
         }
 
 
