@@ -27,7 +27,6 @@ class ProfileActivity :
             binding.user = user
         }
 
-
         binding.ivImageProfile.setOnClickListener {
             ImagePreviewHelper(this).show(binding.ivImageProfile, user?.image)
         }
@@ -41,9 +40,9 @@ class ProfileActivity :
 
         binding.ivEditProfile.setOnClickListener {
             val kembali = Intent(this, EditProfileActivity::class.java).apply {
-                putExtra("photoFile", binding?.user?.image)
-                putExtra("username", binding?.user?.name)
-                putExtra("phoneNumber", binding?.user?.phoneNumber)
+                putExtra("photoFile", binding.user?.image)
+                putExtra("username", binding.user?.name)
+                putExtra("phoneNumber", binding.user?.phoneNumber)
             }
             startActivity(kembali)
         }
