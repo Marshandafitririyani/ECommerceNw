@@ -23,13 +23,14 @@ class ProfileActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //getprofile
+        //TODO:getprofile
         val user = session.getUser()
         if (user != null) {
             binding.user = user
         }
 
 
+        //TODO:profil yang menampilkan foto atau preview
         binding.ivImageProfile.setOnClickListener {
             ImagePreviewHelper(this).show(binding.ivImageProfile, user?.image)
         }
@@ -39,10 +40,9 @@ class ProfileActivity :
 
         binding.ivLogout.setOnClickListener {
             viewModel.logout()
-//            openActivity<SplashActivity>()
         }
 
-        //put extra
+        //TODO:putextra
         binding.ivEditProfile.setOnClickListener {
             val kembali = Intent(this, EditProfileActivity::class.java).apply {
                 putExtra("photoFile", binding?.user?.image)

@@ -1,10 +1,8 @@
 package com.maruchan.ecommerce.ui.checkout
 
 import androidx.lifecycle.viewModelScope
-import com.crocodic.core.api.ApiCode
 import com.crocodic.core.api.ApiObserver
 import com.crocodic.core.api.ApiResponse
-import com.crocodic.core.extension.toList
 import com.google.gson.Gson
 import com.maruchan.ecommerce.api.ApiService
 import com.maruchan.ecommerce.base.viewmodel.BaseViewModel
@@ -30,13 +28,13 @@ class CheckoutViewModel @Inject constructor(
 
     fun checkout(
         address: String?,
-        provinsi: String?,
-        kota: String?,
-        kecamatan: String?,
+        province: String?,
+        city: String?,
+        subdistrict: String?,
         note: String?
     ) = viewModelScope.launch {
         ApiObserver(
-            { apiService.checkout(address, provinsi, kota, kecamatan, note) },
+            { apiService.checkout(address, province, city, subdistrict, note) },
             false,
             object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {

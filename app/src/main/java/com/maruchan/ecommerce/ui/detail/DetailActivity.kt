@@ -34,7 +34,7 @@ class DetailActivity :
     private var listSize = ArrayList<Product.Size?>()
     private var selectSize: Product.Size? = null
 
-    //adapter color
+    //TODO:adapter color
     private val adapterColor by lazy {
         object : ReactiveListAdapter<ItemColorShoesBinding, Variant>(R.layout.item_color_shoes) {
             override fun onBindViewHolder(
@@ -42,13 +42,13 @@ class DetailActivity :
                 position: Int
             ) {
                 listColor[position]?.let { data ->
-                    //menampilkaan view
+                    //TODO:menampilkaan view
                     holder.binding.data = data
                     holder.binding.backgroundColorShoes.setBackgroundColor(
                         if (data.selected) applicationContext.getColor(R.color.abu)
                         else applicationContext.getColor(R.color.white)
                     )
-                    //menampilkan data
+                    //TODO:menampilkan data
                     holder.itemView.setOnClickListener {
                         listColor.forEachIndexed { index, variant ->
                             variant?.selected = index == position
@@ -63,7 +63,7 @@ class DetailActivity :
             }
         }.initItem()
     }
-    //adapter size
+    //TODO:adapter size
     private val adapterSize by lazy {
         object : ReactiveListAdapter<ItemSizeBinding, Product.Size>(R.layout.item_size) {
             override fun onBindViewHolder(
@@ -71,11 +71,13 @@ class DetailActivity :
                 position: Int
             ) {
                 listSize[position]?.let { data ->
+                    //TODO:menampilkaan view
                     holder.binding.data = data
                     holder.binding.backgroundColorSize.setBackgroundColor(
                         if (data.selected) applicationContext.getColor(R.color.abu)
                         else applicationContext.getColor(R.color.white)
                     )
+                    //TODO:menampilkaan data
                     holder.itemView.setOnClickListener {
                         listSize.forEachIndexed { index, Size ->
                             Size?.selected = index == position
@@ -84,7 +86,7 @@ class DetailActivity :
                         selectSize = data
                         Timber.d("CekListColors: $listSize")
                         println("CekListColors: $listSize")
-                        //untuk mengubah warna saat ingin di add cart
+                        //TODO:untuk mengubah warna saat ingin di add cart
                         if(data.selected) {
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.blue_75))
                         }else{
@@ -102,19 +104,18 @@ class DetailActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //getParcelable
+        //TODO:getParcelable
         product = intent.getParcelableExtra(Const.LIST.PRODUCK)
         binding.detail = product
 
         observe()
         adapter()
         initClick()
-
         getProduct()
 
     }
 
-    //kondisi untuk warnanya(color)
+    //TODO:kondisi untuk warnanya(color)
     private fun condititonForColor(idVarian: Int?) {
         if (selectColor == null) {
             binding.rvSize.visibility = View.INVISIBLE
@@ -140,7 +141,7 @@ class DetailActivity :
 
     }
 
-    //adapter
+    //TODO:adapter color dan size
     private fun adapter() {
         binding.rvColor.adapter = adapterColor
         binding.rvSize.visibility = View.INVISIBLE
@@ -148,7 +149,7 @@ class DetailActivity :
 
     }
 
-    //kondisi loading
+    //TODO:kondisi loading
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -168,7 +169,7 @@ class DetailActivity :
                         }
                     }
                 }
-                //untuk submit varian, color dan size
+                //TODO:untuk submit varian, color dan size
                 launch {
                     viewModel.responseSave.collect {
                         product = it
@@ -185,7 +186,7 @@ class DetailActivity :
                         }
                     }
                 }
-                //untuk memanggil image slidernya
+                //TODO:untuk image slidernya
                 launch {
                     viewModel.responseSaveImage.collect {
                         initSlider(it)
@@ -196,12 +197,12 @@ class DetailActivity :
         }
     }
 
-    //untuk productnya
+    //TODO:untuk productnya
     private fun getProduct() {
         product?.id?.let { viewModel.getProductById(it) }
     }
 
-    //untuk kondisi saat menambahkan barang ke cart dan buttom berubah warna dan jika belum memilih dia akan mengeluarkan pesan
+    //TODO:untuk kondisi saat menambahkan barang ke cart dan buttom berubah warna dan jika belum memilih dia akan mengeluarkan pesan
     private fun addCart() {
         if (selectSize?.selected == true) {
             selectSize?.let {
@@ -211,7 +212,7 @@ class DetailActivity :
         }
 
 
-    //image slider
+    //TODO:image slider
     private fun initSlider(data: List<ImageSlider>) {
         val imageList = ArrayList<SlideModel>()
         data.forEach {

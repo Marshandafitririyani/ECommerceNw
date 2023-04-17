@@ -34,7 +34,7 @@ class ProfileViewModel @Inject constructor(
             false, object : ApiObserver.ResponseListener {
                 override suspend fun onSuccess(response: JSONObject) {
                     session.clearAll()
-                    _apiResponse.send(ApiResponse().responseSuccess("Logout Success"))
+                    _apiResponse.send(ApiResponse().responseSuccess("Logout"))
                 }
                 override suspend fun onError(response: ApiResponse) {
                     super.onError(response)

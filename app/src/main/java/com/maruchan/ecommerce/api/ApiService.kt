@@ -30,9 +30,9 @@ interface ApiService {
     @POST("api/checkout")
     suspend fun checkout(
         @Field("alamat") address: String?,
-        @Field("provinsi") provinsi: String?,
-        @Field("kota") kota: String?,
-        @Field("kecamatan") kecamatan: String?,
+        @Field("provinsi") province: String?,
+        @Field("kota") city: String?,
+        @Field("kecamatan") subdistrict: String?,
         @Field("notes") note: String?,
     ): String
 

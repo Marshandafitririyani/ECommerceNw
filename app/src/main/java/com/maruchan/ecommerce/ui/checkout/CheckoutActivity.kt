@@ -21,6 +21,10 @@ class CheckoutActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.ivBackCheckout.setOnClickListener {
+            finish()
+        }
+
         binding.btnCheckoutCheckout.setOnClickListener {
             if (binding.etAlamatCheckout.isEmptyRequired(R.string.label_must_fill) ||
                 binding.etProvinsiCheckout.isEmptyRequired(R.string.label_must_fill) ||
@@ -31,16 +35,12 @@ class CheckoutActivity :
                 return@setOnClickListener
             }
             val address = binding.etAlamatCheckout.textOf()
-            val provinsi = binding.etProvinsiCheckout.textOf()
-            val kota = binding.etKotaCheckout.textOf()
-            val kecamatan = binding.etKecamatanCheckout.textOf()
+            val province = binding.etProvinsiCheckout.textOf()
+            val city = binding.etKotaCheckout.textOf()
+            val subdistrict = binding.etKecamatanCheckout.textOf()
             val note = binding.etNoteCheckout.textOf()
 
-            viewModel.checkout(address, provinsi, kota, kecamatan, note)
-        }
-
-        binding.ivBackCheckout.setOnClickListener {
-           finish()
+            viewModel.checkout(address, province, city, subdistrict, note)
         }
 
         lifecycleScope.launch {

@@ -29,7 +29,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     private val product = ArrayList<Product?>()
     private val procuctAll = ArrayList<Product?>()
 
-    //adapter product
+    //TODO:adapter product
     private val adapter by lazy {
         ReactiveListAdapter<ItemShoesBinding, Product>(R.layout.item_shoes).initItem { position, data ->
             val detailIntent = Intent(this, DetailActivity::class.java).apply {
@@ -49,14 +49,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
         initClick()
         getProfile()
 
-        //untuk getUsernya
+        //TODO:untuk getUsernya
         val user = session.getUser()
         if (user != null) {
             binding.home = user
         }
     }
 
-    //fungsi untuk searchnya
+    //TODO:fungsi untuk searchnya
     private fun search(){
         binding.etSearchHome.doOnTextChanged { text, start, before, count ->
             if (text.isNullOrEmpty()) {
@@ -73,7 +73,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                 binding.rvHome.adapter?.notifyDataSetChanged()
                 binding.rvHome.adapter?.notifyItemInserted(0)
             }
-            //untuk menampilkan is empty saat di search kosong
+            //TODO:untuk menampilkan is empty saat di search kosong
             if (product.isEmpty()) {
                 binding.tvEmpty.visibility = View.VISIBLE
             } else {
@@ -105,7 +105,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                     viewModel.apiResponse.collect {
                         when (it.status) {
                             ApiStatus.SUCCESS -> {
-                                //untuk getusernya
+                                //TODO:untuk getusernya
                                 loadingDialog.dismiss()
                                 binding.home = session.getUser()
                             }
@@ -114,12 +114,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                     }
                 }
                 launch {
-                    //untuk menampilkan productnya
+                    //TODO:untuk menampilkan productnya
                     viewModel.responseSave.collect { product ->
                         adapter.submitList(product)
                     }
                 }
                 launch {
+                    //TODO:untuk search
                     viewModel.responseSave.collect {
                         product.clear()
                         procuctAll.clear()
@@ -127,7 +128,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                         product.addAll(it)
                         procuctAll.addAll(it)
                         adapter.submitList(product)
-                        //untuk menampilkan is empty saat di search kosong
+                        //TODO:untuk menampilkan is empty saat di search kosong
                         if (product.isEmpty()) {
                             binding.tvEmpty.visibility = View.VISIBLE
                         } else {

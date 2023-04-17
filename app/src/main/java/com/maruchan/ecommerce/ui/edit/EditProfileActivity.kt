@@ -49,7 +49,7 @@ class EditProfileActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //menampilkan foto nama dan phone pada edit profile
+        //TODO:menampilkan foto nama dan phone pada edit profile
         photo = intent.getStringExtra("photoFile")
         username = intent.getStringExtra("username")
         phone = intent.getStringExtra("phoneNumber")

@@ -38,7 +38,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layou
                         when (it.status) {
                             ApiStatus.LOADING -> loadingDialog.show("Please Wait login")
                             ApiStatus.SUCCESS -> {
-                                loadingDialog.show("Login success")
+                                loadingDialog.dismiss()
                                 openActivity<HomeActivity>()
                                 finish()
                             }
