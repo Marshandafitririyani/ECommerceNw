@@ -1,10 +1,8 @@
 package com.maruchan.ecommerce.ui.cart
 
 import android.app.AlertDialog
-import android.content.Context
 import android.graphics.Canvas
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -13,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.crocodic.core.base.adapter.ReactiveListAdapter
 import com.crocodic.core.extension.openActivity
 import com.crocodic.core.extension.snacked
+import com.crocodic.core.helper.util.Dpx
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
 import com.maruchan.ecommerce.data.cart.Cart
@@ -86,6 +85,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         initClick()
         observe()
         adapter()
+        showCart()
 
     }
     private fun btnCondition() {
@@ -94,7 +94,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         if (listCart.isEmpty()) {
             binding.btnCheckoutCart.setBackgroundColor(getResources().getColor(com.denzcoskun.imageslider.R.color.grey_font))
             binding.btnCheckoutCart.setOnClickListener {
-                binding.root.snacked("Tambahkan Produk ke Keranjang Terlebih dahulu")
+//                binding.root.snacked("Tambahkan Produk ke Keranjang Terlebih dahulu")
             }
         } else {
             binding.btnCheckoutCart.setBackgroundColor(getResources().getColor(R.color.blue_75))
@@ -110,7 +110,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
             finish()
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
-            observe()
+            showCart()
         }
 
     }
@@ -125,7 +125,6 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    showCart()
                     //untuk swipe refresh
                     viewModel.responseSave.collect { product ->
                         binding.swipeRefreshLayout.isRefreshing = false
@@ -140,7 +139,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
 
     //TODO:untuk menampilkan list pada cart
     private fun showCart() {
-        viewModel.showChart()
+        viewModel.showCart()
     }
 
     //TODO:untuk mengubah = menambah, mengurangi dan menghapus
@@ -148,10 +147,12 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         viewModel.editCart(id, qty)
     }
 
+    //komen
     //TODO:fungsi untuk delete swipe
     private fun setItemTouchHelper() {
         ItemTouchHelper(object : ItemTouchHelper.Callback() {
-            private val limitScrolX = dpTopx(100f, this@CartActivity)
+//            private val limitScrolX = dpTopx(100f, this@CartActivity)
+            private val limitScrollX = Dpx.dpToPx(100)
             private var currentScrollX = 0
             private var currentScrollXWhenInActive = 0
             private var initWhenInActive = 0f
@@ -200,8 +201,8 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                     }
                     if (isCurrentlyActive) {
                         var scrollOffset = currentScrollX + (-dX).toInt()
-                        if (scrollOffset > limitScrolX) {
-                            scrollOffset = limitScrolX
+                        if (scrollOffset > limitScrollX) {
+                            scrollOffset = limitScrollX
                         } else if (scrollOffset < 0) {
                             scrollOffset = 0
                         }
@@ -212,7 +213,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                             currentScrollXWhenInActive = viewHolder.itemView.scrollX
                             initWhenInActive = dX
                         }
-                        if (viewHolder.itemView.scrollX < limitScrolX) {
+                        if (viewHolder.itemView.scrollX < limitScrollX) {
                             val xInt = (currentScrollXWhenInActive * dX / initWhenInActive).toInt()
                             viewHolder.itemView.scrollTo(xInt, 0)
                         }
@@ -227,8 +228,8 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                 viewHolder: RecyclerView.ViewHolder
             ) {
                 super.clearView(recyclerView, viewHolder)
-                if (viewHolder.itemView.scrollX > limitScrolX) {
-                    viewHolder.itemView.scrollTo(limitScrolX, 0)
+                if (viewHolder.itemView.scrollX > limitScrollX) {
+                    viewHolder.itemView.scrollTo(limitScrollX, 0)
 
                 } else if (viewHolder.itemView.scrollX < 0) {
                     viewHolder.itemView.scrollTo(0, 0)
@@ -240,9 +241,9 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         }
     }
 
-    private fun dpTopx(dipValue: Float, contentx: Context): Int {
+   /* private fun dpTopx(dipValue: Float, contentx: Context): Int {
         return (dipValue * contentx.resources.displayMetrics.density).toInt()
-    }
+    }*/
 
 
 }

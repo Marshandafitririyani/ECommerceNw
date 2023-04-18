@@ -1,14 +1,13 @@
 package com.maruchan.ecommerce.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
 import com.crocodic.core.base.adapter.ReactiveListAdapter
-import com.crocodic.core.extension.snacked
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.maruchan.ecommerce.R
@@ -91,6 +90,8 @@ class DetailActivity :
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.blue_75))
                         }else{
                             binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.abu))
+                            //TODO:untuk merubah getResoure jadi contexCompat
+                            //binding.btnCheckoutDetail.setBackgroundColor(ContextCompat.getColor(this@DetailActivity,R.color.abu))
 
                         }
                     }
@@ -105,7 +106,7 @@ class DetailActivity :
         super.onCreate(savedInstanceState)
 
         //TODO:getParcelable
-        product = intent.getParcelableExtra(Const.LIST.PRODUCK)
+        product = intent.getParcelableExtra(Const.LIST.PRODUCT)
         binding.detail = product
 
         observe()

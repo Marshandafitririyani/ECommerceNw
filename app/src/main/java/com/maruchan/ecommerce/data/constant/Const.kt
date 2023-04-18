@@ -5,7 +5,6 @@ object Const {
         const val API_TOKEN = "api_token"
     }
     object LIST{
-        const val PRODUCK = "produck"
-        const val RELOAD = 876
+        const val PRODUCT = "product"
     }
 }

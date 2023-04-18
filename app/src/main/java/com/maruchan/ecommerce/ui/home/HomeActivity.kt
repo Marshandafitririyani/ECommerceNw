@@ -2,7 +2,6 @@ package com.maruchan.ecommerce.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Lifecycle
@@ -33,7 +32,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     private val adapter by lazy {
         ReactiveListAdapter<ItemShoesBinding, Product>(R.layout.item_shoes).initItem { position, data ->
             val detailIntent = Intent(this, DetailActivity::class.java).apply {
-                putExtra(Const.LIST.PRODUCK, data)
+                putExtra(Const.LIST.PRODUCT, data)
             }
             startActivity(detailIntent)
         }

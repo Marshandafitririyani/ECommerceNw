@@ -34,6 +34,17 @@ class CheckoutActivity :
             ) {
                 return@setOnClickListener
             }
+            // TODO: sama kaya  yg diatas
+           /* if (listOf(
+                    binding.etAlamatCheckout,
+                    binding.etProvinsiCheckout,
+                    binding.etKotaCheckout,
+                    binding.etKecamatanCheckout,
+                    binding.etNoteCheckout
+                ).isEmptyRequired(R.string.label_must_fill)
+            ) {
+                return@setOnClickListener
+            }*/
             val address = binding.etAlamatCheckout.textOf()
             val province = binding.etProvinsiCheckout.textOf()
             val city = binding.etKotaCheckout.textOf()
