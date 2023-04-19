@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Canvas
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.crocodic.core.base.adapter.ReactiveListAdapter
 import com.crocodic.core.extension.openActivity
-import com.crocodic.core.extension.snacked
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
 import com.maruchan.ecommerce.data.cart.Cart
@@ -78,6 +78,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
 
         initClick()
         observe()
+        showCart()
         adapter()
 
     }
@@ -85,12 +86,9 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
     private fun btnCondition() {
         val listCart = adapterCart.currentList
         if (listCart.isEmpty()) {
-            binding.btnCheckoutCart.setBackgroundColor(getResources().getColor(com.denzcoskun.imageslider.R.color.grey_font))
-            binding.btnCheckoutCart.setOnClickListener {
-                binding.root.snacked("Add product to cart")
-            }
+            binding.btnCheckoutCart.setBackgroundColor(ContextCompat.getColor(this@CartActivity,com.denzcoskun.imageslider.R.color.grey_font))
         } else {
-            binding.btnCheckoutCart.setBackgroundColor(getResources().getColor(R.color.blue_75))
+            binding.btnCheckoutCart.setBackgroundColor(ContextCompat.getColor(this@CartActivity,R.color.blue_75))
             binding.btnCheckoutCart.setOnClickListener {
                 openActivity<CheckoutActivity>()
                 finish()
@@ -103,7 +101,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
             finish()
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
-            observe()
+            showCart()
         }
 
     }
@@ -117,7 +115,6 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    showCart()
                     viewModel.responseSave.collect { product ->
                         binding.swipeRefreshLayout.isRefreshing = false
                         adapterCart.submitList(product)
@@ -130,7 +127,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
     }
 
     private fun showCart() {
-        viewModel.showChart()
+        viewModel.showCart()
     }
 
     private fun editCart(id: Int, qty: Int) {
