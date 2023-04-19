@@ -1,7 +1,6 @@
 package com.maruchan.ecommerce.ui.cart
 
 import android.app.AlertDialog
-import android.content.Context
 import android.graphics.Canvas
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.crocodic.core.base.adapter.ReactiveListAdapter
 import com.crocodic.core.extension.openActivity
+import com.crocodic.core.helper.util.Dpx
 import com.maruchan.ecommerce.R
 import com.maruchan.ecommerce.base.activity.BaseActivity
 import com.maruchan.ecommerce.data.cart.Cart
@@ -136,7 +136,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
 
     private fun setItemTouchHelper() {
         ItemTouchHelper(object : ItemTouchHelper.Callback() {
-            private val limitScrolX = dpTopx(100f, this@CartActivity)
+            private val limitScrollX = Dpx.dpToPx(100)
             private var currentScrollX = 0
             private var currentScrollXWhenInActive = 0
             private var initWhenInActive = 0f
@@ -185,8 +185,8 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                     }
                     if (isCurrentlyActive) {
                         var scrollOffset = currentScrollX + (-dX).toInt()
-                        if (scrollOffset > limitScrolX) {
-                            scrollOffset = limitScrolX
+                        if (scrollOffset > limitScrollX) {
+                            scrollOffset = limitScrollX
                         } else if (scrollOffset < 0) {
                             scrollOffset = 0
                         }
@@ -197,7 +197,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                             currentScrollXWhenInActive = viewHolder.itemView.scrollX
                             initWhenInActive = dX
                         }
-                        if (viewHolder.itemView.scrollX < limitScrolX) {
+                        if (viewHolder.itemView.scrollX < limitScrollX) {
                             val xInt = (currentScrollXWhenInActive * dX / initWhenInActive).toInt()
                             viewHolder.itemView.scrollTo(xInt, 0)
                         }
@@ -212,8 +212,8 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
                 viewHolder: RecyclerView.ViewHolder
             ) {
                 super.clearView(recyclerView, viewHolder)
-                if (viewHolder.itemView.scrollX > limitScrolX) {
-                    viewHolder.itemView.scrollTo(limitScrolX, 0)
+                if (viewHolder.itemView.scrollX > limitScrollX) {
+                    viewHolder.itemView.scrollTo(limitScrollX, 0)
 
                 } else if (viewHolder.itemView.scrollX < 0) {
                     viewHolder.itemView.scrollTo(0, 0)
@@ -223,10 +223,6 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
         }).apply {
             attachToRecyclerView(binding.rvHome)
         }
-    }
-
-    private fun dpTopx(dipValue: Float, contentx: Context): Int {
-        return (dipValue * contentx.resources.displayMetrics.density).toInt()
     }
 
 }
