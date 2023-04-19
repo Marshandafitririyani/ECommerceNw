@@ -90,7 +90,7 @@ class CartActivity : BaseActivity<ActivityCartBinding, CartViewModel>(R.layout.a
     }
     private fun btnCondition() {
         val listCart = adapterCart.currentList
-        //TODO:untuk mengubah warna ketika keranjang ada dapat di cekot dan jika keranjnag tidak ada barang tidak dapat di cekot
+        //TODO:untuk mengubah warna ketika keranjang ada product dapat di cekot dan jika keranjnag tidak ada barang tidak dapat di cekot
         if (listCart.isEmpty()) {
             binding.btnCheckoutCart.setBackgroundColor(getResources().getColor(com.denzcoskun.imageslider.R.color.grey_font))
             binding.btnCheckoutCart.setOnClickListener {
