@@ -27,7 +27,7 @@ class CartViewModel @Inject constructor(
     private val _responseAPI = MutableSharedFlow<ApiResponse>()
     val responseAPI = _responseAPI.asSharedFlow()
 
-    fun showChart() = viewModelScope.launch {
+    fun showCart() = viewModelScope.launch {
         ApiObserver(
             { apiService.showChart() },
             false,

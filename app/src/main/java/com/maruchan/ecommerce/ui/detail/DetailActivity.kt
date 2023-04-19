@@ -1,8 +1,8 @@
 package com.maruchan.ecommerce.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -75,9 +75,19 @@ class DetailActivity :
                         notifyDataSetChanged()
                         selectSize = data
                         if (data.selected) {
-                            binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.blue_75))
+                            binding.btnCheckoutDetail.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    this@DetailActivity,
+                                    R.color.blue_75
+                                )
+                            )
                         } else {
-                            binding.btnCheckoutDetail.setBackgroundColor(getResources().getColor(R.color.abu))
+                            binding.btnCheckoutDetail.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    this@DetailActivity,
+                                    R.color.abu
+                                )
+                            )
 
                         }
                     }
@@ -96,7 +106,6 @@ class DetailActivity :
         observe()
         adapter()
         initClick()
-
         getProduct()
 
     }
@@ -182,7 +191,6 @@ class DetailActivity :
     }
 
     private fun addCart() {
-        Log.d("cekSelectedAdd", "cekSelectedAdd : ${selectSize?.selected}")
         if (selectSize?.selected == true) {
             selectSize?.let {
                 selectSize?.id?.let { viewModel.addCart(sizeId = it, qty = 1) }
