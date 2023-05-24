@@ -47,7 +47,7 @@
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_130sdp"
             android:layout_gravity="center"
-            android:layout_marginTop="144dp"
+            android:layout_marginTop="@dimen/_110sdp"
             android:background="@drawable/custom_button_sircle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.508"
@@ -71,7 +71,7 @@
             android:id="@+id/iv_name"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_280sdp"
+            android:layout_marginTop="@dimen/_290sdp"
             android:foreground="?selectableItemBackground"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +117,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/iv_name"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -129,7 +129,7 @@
             android:id="@+id/linear_phone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_320sdp"
+            android:layout_marginTop="@dimen/_330sdp"
             android:foreground="?selectableItemBackground"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -175,7 +175,7 @@
             android:layout_height="1dp"
             android:layout_below="@id/iv_name"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_150sdp"
+            android:layout_marginTop="@dimen/_130sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -192,10 +192,9 @@
             android:foreground="?selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.413" />
+            app:layout_constraintVertical_bias="0.380" />
 
         <ImageView
             android:layout_width="@dimen/_20sdp"
@@ -207,13 +206,13 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.418" />
+            app:layout_constraintVertical_bias="0.385" />
 
         <LinearLayout
             android:id="@+id/iv_logout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_360sdp"
+            android:layout_marginTop="@dimen/_370sdp"
             android:background="?selectableItemBackground"
             android:foreground="?selectableItemBackground"
             android:orientation="horizontal"

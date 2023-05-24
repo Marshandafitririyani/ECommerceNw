@@ -80,7 +80,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.413" />
+            app:layout_constraintVertical_bias="0.390" />
 
         <ImageView
             android:layout_width="@dimen/_20sdp"
@@ -92,7 +92,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.418" />
+            app:layout_constraintVertical_bias="0.395" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_360sdp"
+                android:layout_marginTop="@dimen/_350sdp"
                 android:background="@drawable/custom_layout_frame"
                 android:drawableStart="@drawable/ic_phone_android"
                 android:drawablePadding="@dimen/_9sdp"
@@ -167,7 +167,7 @@
             android:id="@+id/btn_save_edit_profil"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_518sdp"
+            android:layout_marginTop="@dimen/_555sdp"
             android:background="@color/blue_100"
             android:foreground="?selectableItemBackground"
             android:orientation="horizontal"

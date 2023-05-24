@@ -238,7 +238,7 @@
             android:id="@+id/btn_checkout_checkout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
-            android:layout_marginTop="@dimen/_520sdp"
+            android:layout_marginTop="@dimen/_550sdp"
             android:background="@color/blue_100"
             android:foreground="?selectableItemBackground"
             android:gravity="center"
